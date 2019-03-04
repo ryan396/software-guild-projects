@@ -87,6 +87,11 @@ public class Item {
         return true;
     }
     
+    @Override
+    public String toString() {
+        return  "|Name: " + name + " |Cost: " + 
+                cost + " |Inventory Level: " + count; 
+     }
     
       
 }

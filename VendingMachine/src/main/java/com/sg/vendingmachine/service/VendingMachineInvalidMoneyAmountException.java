@@ -19,4 +19,5 @@ public class VendingMachineInvalidMoneyAmountException extends Exception {
             Throwable cause) {
         super(message, cause);
     }
+   
 }

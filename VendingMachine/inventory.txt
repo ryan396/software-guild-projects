@@ -1,3 +1,2 @@
-0004::peanuts::1.25::5
-0001::kitkat::1.00::6
-0009::Chocolate Truffles::4.00::2
+0002::chocolates::3.00::10
+0001::peanuts::1.50::0

@@ -45,8 +45,9 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
         
         Item newItem = dao.addItem(item.getItemID(), item);
         
-        auditDao.writeAuditEntry(
-            "Item " + item.getItemID() + " CREATED.");
+        
+        //auditDao.writeAuditEntry(
+        //    "Item " + item.getItemID() + " CREATED.");
         
         return newItem;
     
@@ -64,13 +65,13 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
 
     @Override
     public Item removeItem(String itemID) throws VendingMachinePersistenceException {
-        auditDao.writeAuditEntry("Item " + itemID + " REMOVED");
+        //auditDao.writeAuditEntry("Item " + itemID + " REMOVED");
         return dao.removeItem(itemID);
     }
     
     @Override
     public Item editItem(String itemID, Item item) throws VendingMachinePersistenceException {
-        auditDao.writeAuditEntry("Item " + itemID + " EDITED");
+        //auditDao.writeAuditEntry("Item " + itemID + " EDITED");
         return dao.editItem(itemID, item);
     }
    
@@ -105,7 +106,7 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
         
         if (money.compareTo(dao.getItem(itemID).getCost()) == -1) {
             throw new VendingMachineInsufficientFundsException (
-                "Error: Not enough money to purchase item" +
+                "Error: Not enough money to purchase item " + itemID +
                     " You only have $" + currentBalance + " in the machine.");
         }
     }
@@ -117,7 +118,7 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
             VendingMachinePersistenceException, VendingMachineNoItemInventoryException {
         if (dao.getItem(itemID).getCount() == 0) {
             throw new VendingMachineNoItemInventoryException (
-                "Error: Item inventory is 0. Cannot dispense item.");
+                "Error: " + itemID + " inventory is 0. Cannot dispense item.");
         }
     }
     
@@ -127,8 +128,8 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
             VendingMachineInvalidMoneyAmountException {
         validateMoneyData(money);
         currentBalance = currentBalance.add(money);
-        auditDao.writeAuditEntry("MONEY IN THE AMOUNT: $" + money + 
-                " ADDED TO THE MACHINE");
+        //auditDao.writeAuditEntry("MONEY IN THE AMOUNT: $" + money + 
+        //        " ADDED TO THE MACHINE");
         
         return currentBalance;
         
@@ -164,7 +165,7 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
         editedItem.setCost(editedItem.getCost());
         editedItem.setCount(currentCount - 1);
         dao.editItem(itemID, editedItem);
-        auditDao.writeAuditEntry("Item " + itemID + " PURCHASED");
+        //auditDao.writeAuditEntry("Item " + itemID + " PURCHASED");
         return changeDue;
     }
         
