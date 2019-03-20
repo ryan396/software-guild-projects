@@ -1,0 +1,16 @@
+2019-03-20T10:02:26.663 : com.sg.flooringmastery.service.FlooringMasteryOrderDataValidationException: ERROR: All fields [Customer Name, State, Product Type, Area] are required. Area entered must be greater than 0
+2019-03-20T10:02:45.574 : Order for Ryan CREATED.
+2019-03-20T10:02:45.574 : addOrder: 2020-04-03Order Number: 149 | Customer: Ryan | State: OH | taxRate: 6.25 | productTypeTile |area400 | costPerSquareFoot: 3.50 | laborCostPerSquareFoot: 4.15 | materialCost: 1400.00 | laborCost: 1660.00 | tax183.60 total: 3243.602019-03-20T14:02:02.096 : Order for Kiko CREATED.
+2019-03-20T14:02:02.102 : addOrder: 2020-04-03Order Number: 150 | Customer: Kiko | State: OH | taxRate: 6.25 | productTypeWood |area300 | costPerSquareFoot: 5.15 | laborCostPerSquareFoot: 4.75 | materialCost: 1545.00 | laborCost: 1425.00 | tax178.20 total: 3148.20
+2019-03-20T14:08:47.996 : Order for Wise CREATED.
+2019-03-20T14:08:48.011 : addOrder: 2013-06-01Order Number: 1 | Customer: Wise | State: OH | taxRate: 6.25 | productTypeWood |area100.00 | costPerSquareFoot: 5.15 | laborCostPerSquareFoot: 4.75 | materialCost: 515.00 | laborCost: 475.00 | tax59.40 total: 1049.40
+2019-03-20T14:09:37.234 : Order for Ryan CREATED.
+2019-03-20T14:09:37.249 : addOrder: 2019-03-20Order Number: 2 | Customer: Ryan | State: PA | taxRate: 6.75 | productTypeLaminate |area300.25 | costPerSquareFoot: 1.75 | laborCostPerSquareFoot: 2.10 | materialCost: 525.44 | laborCost: 630.53 | tax80.92 total: 1236.89
+2019-03-20T15:02:17.097 : Order for Jackie CREATED.
+2019-03-20T15:02:17.097 : addOrder: 2019-03-20Order Number: 3 | Customer: Jackie | State: OH | taxRate: 6.25 | productTypeTile |area323.3 | costPerSquareFoot: 3.50 | laborCostPerSquareFoot: 4.15 | materialCost: 1131.55 | laborCost: 1341.70 | tax148.40 total: 2621.65
+2019-03-20T15:02:46.824 : Order 3 EDITED.
+2019-03-20T15:02:46.824 : editOrder: 2019-03-203Order Number: 3 | Customer: Jackie | State: PA | taxRate: 6.75 | productTypeTile |area323.3 | costPerSquareFoot: 3.50 | laborCostPerSquareFoot: 4.15 | materialCost: 1131.55 | laborCost: 1341.70 | tax173.13 total: 2646.38
+2019-03-20T15:03:21.036 : Order 2 EDITED.
+2019-03-20T15:03:21.036 : editOrder: 2019-03-202Order Number: 2 | Customer: Ryan | State: PA | taxRate: 6.75 | productTypeLaminate |area300.25 | costPerSquareFoot: 1.75 | laborCostPerSquareFoot: 2.10 | materialCost: 525.44 | laborCost: 630.53 | tax80.92 total: 1236.89
+2019-03-20T15:03:36.990 : Order 3 REMOVED.
+2019-03-20T15:03:36.990 : removeOrder: 2019-03-203true

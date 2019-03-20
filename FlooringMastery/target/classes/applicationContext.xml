@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://www.springframework.org/schema/mvc
+          http://www.springframework.org/schema/mvc/spring-mvc.xsd
+          http://www.springframework.org/schema/tx
+          http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+          http://www.springframework.org/schema/context
+          http://www.springframework.org/schema/context/spring-context.xsd
+          http://www.springframework.org/schema/aop  
+          http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+
+    <!-- Bean definitions go here -->
+   <bean id="userIO" class="com.sg.flooringmastery.userio.UserIOConsoleImpl"/>
+   
+   <bean id="view" class="com.sg.flooringmastery.userio.FlooringMasteryView">
+        <constructor-arg ref="userIO"/>
+    </bean>
+    
+    <bean id="orderDao" class="com.sg.flooringmastery.dao.FlooringMasteryOrderDaoFileImpl"/>
+    
+    <bean id="taxDao" class="com.sg.flooringmastery.dao.FlooringMasteryTaxDaoFileImpl"/>
+    
+    <bean id="productDao" class="com.sg.flooringmastery.dao.FlooringMasteryProductDaoFileImpl"/>
+    
+    <bean id="auditDao" class="com.sg.flooringmastery.service.FlooringMasteryAuditDaoFileImpl"/>
+    
+    <bean id="orderDaoTraining" class="com.sg.flooringmastery.dao.FlooringMasteryOrderTrainingDaoImpl"/>
+    
+    <bean id="productService" class="com.sg.flooringmastery.service.FlooringMasteryProductServiceLayerImpl">
+        <constructor-arg ref="productDao"/>
+        <constructor-arg ref="auditDao"/>
+    </bean>
+    
+    <bean id="taxService" class="com.sg.flooringmastery.service.FlooringMasteryTaxServiceLayerImpl">
+        <constructor-arg ref="taxDao"/>
+        <constructor-arg ref="auditDao"/>
+    </bean>
+    <!-- swap orderDao for orderDaoTraining to switch from production to training mode -->
+    <bean id="orderService" class="com.sg.flooringmastery.service.FlooringMasteryOrderServiceLayerImpl">
+       <constructor-arg ref="orderDao"/>
+       <constructor-arg ref="productDao"/>
+       <constructor-arg ref="taxDao"/>
+       <constructor-arg ref="auditDao"/>
+   </bean>
+    
+    <bean id="adminController" class="com.sg.flooringmastery.controller.FlooringMasteryAdminController">
+       <constructor-arg ref="view"/>
+       <constructor-arg ref="taxService"/>
+       <constructor-arg ref="productService"/>
+   </bean>
+    
+    
+   <bean id="productionController" class="com.sg.flooringmastery.controller.FlooringMasteryProductionController">
+       <constructor-arg ref="orderService"/>
+       <constructor-arg ref="view"/>
+   </bean>
+   
+   <bean id="controller" class="com.sg.flooringmastery.controller.FlooringMasteryController">
+       <constructor-arg ref="view"/>
+       <constructor-arg ref="adminController"/>
+       <constructor-arg ref="productionController"/>
+   </bean>
+   
+   <bean id="loggingAdvice" class="com.sg.flooringmastery.advice.LoggingAdvice">
+        <constructor-arg ref="auditDao"/>
+    </bean>
+    
+    
+    <aop:config>
+        <aop:aspect ref="loggingAdvice">
+            <aop:after-returning
+            method="createAuditEntry"
+            pointcut="execution(* com.sg.flooringmastery.service.FlooringMasteryTaxServiceLayer.addTax(..))"
+            />
+       
+            <aop:after-returning
+            method="createAuditEntry"
+            pointcut="execution(* com.sg.flooringmastery.service.FlooringMasteryTaxServiceLayer.removeTax(..))"
+            />
+  
+        
+            <aop:after-returning
+            method="createAuditEntry"
+            pointcut="execution(* com.sg.flooringmastery.service.FlooringMasteryTaxServiceLayer.editTax(..))"
+            />
+
+            <aop:after-returning
+            method="createAuditEntry"
+            pointcut="execution(* com.sg.flooringmastery.service.FlooringMasteryProductServiceLayer.addProduct(..))"
+            />
+       
+            <aop:after-returning
+            method="createAuditEntry"
+            pointcut="execution(* com.sg.flooringmastery.service.FlooringMasteryProductServiceLayer.removeProduct(..))"
+            />
+  
+        
+            <aop:after-returning
+            method="createAuditEntry"
+            pointcut="execution(* com.sg.flooringmastery.service.FlooringMasteryProductServiceLayer.editProduct(..))"
+            />
+
+            <aop:after-returning
+            method="createAuditEntry"
+            pointcut="execution(* com.sg.flooringmastery.service.FlooringMasteryOrderServiceLayer.addOrder(..))"
+            />
+       
+            <aop:after-returning
+            method="createAuditEntry"
+            pointcut="execution(* com.sg.flooringmastery.service.FlooringMasteryOrderServiceLayer.removeOrder(..))"
+            />
+  
+        
+            <aop:after-returning
+            method="createAuditEntry"
+            pointcut="execution(* com.sg.flooringmastery.service.FlooringMasteryOrderServiceLayer.editOrder(..))"
+            
+            />
+            
+            <aop:after-throwing
+            method="logException"
+            pointcut="execution(* com.sg.flooringmastery.service.FlooringMasteryOrderServiceLayer.addOrder(..))"
+            throwing="ex"
+            />
+            
+            <aop:after-throwing
+            method="logException"
+            pointcut="execution(* com.sg.flooringmastery.service.FlooringMasteryOrderServiceLayer.removeOrder(..))"
+            throwing="ex"
+            />
+            
+            <aop:after-throwing
+            method="logException"
+            pointcut="execution(* com.sg.flooringmastery.service.FlooringMasteryOrderServiceLayer.editOrder(..))"
+            throwing="ex"
+            />
+
+        </aop:aspect>
+        
+        
+    </aop:config>
+    
+</beans>
