@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Vending Machine</title>
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <style>
+    .item-class {
+      padding:35px;
+      margin:25px;
+      background-color: #99D3DF;
+      border-radius:10px;
+
+    }
+
+    .item-class:hover {
+      background-color: gray;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container" style="text-align:center; width:100%;">
+
+    <div class="row" style="height: 10vh; background-color: #88BBD6">
+      <h1>Vending Machine</h1>
+      <hr>
+      <ul class="list-group" id="errorMessages"></ul>
+    </div>
+    <div class="row" style="background-color:#E9E9E9;">
+      <div class="col-md-8" id="item-container">
+      </div>
+
+      <div class="col-md-4" style="height:90vh">
+
+        <div class="row" id="add-money-form" style="text-align:center">
+          <form "form-horizontal" role="form" id="money-form">
+            <h4>Total $ In</h4>
+            <br>
+            <div class="form-group" style="display: flex; justify-content: center">
+              <div class="panel panel-default" style="width: 45%">
+                <div id="money-panel"class="panel-body">0.00</div>
+              </div>
+            </div>
+            <div id="button-box-1" class="form-group" style="display: flex; justify-content: center; padding:10px">
+              <div class="col-md-4">
+                <button type="button" id="add-dollar-button" class="btn btn-default" style="width: 100px; height:40px" onclick="">
+                  Add Dollar
+                </button>
+              </div>
+              <div class="col-md-4">
+                <button type="button" id="add-quarter-button" class="btn btn-default" style="width: 100px; height:40px" onclick="">
+                  Add Quarter
+                </button>
+              </div>
+            </div>
+            <div id="button-box-2" class="form-group" style="display: flex; justify-content: center; padding:10px">
+              <div class="col-md-4">
+                <button type="button" id="add-dime-button" class="btn btn-default" style="width: 100px; height:40px" onclick="">
+                  Add Dime
+                </button>
+              </div>
+              <div class="col-md-4">
+                <button type="button" id="add-nickel-button" class="btn btn-default" style="width: 100px; height:40px" onclick="">
+                  Add Nickel
+                </button>
+              </div>
+            </div>
+          </form>
+          <hr>
+          <form class="form-horizontal" role="form" id="messages-form">
+            <h4>Messages:</h4>
+            <br>
+            <div class="form-group" style="display: flex; justify-content: center">
+              <div class="panel panel-default" style="width: 45%; height:75px">
+                <div class="panel-body" id="messages-box"></div>
+              </div>
+            </div>
+            <div class="row" style="display: flex; justify-content: center">
+              <div class="form-group">
+                <label for="item-input" class="col-md-4 control-label">
+                  <h4>Item:</h4>
+                </label>
+
+                <div class="col-md-6">
+                  <input type="text" class="form-control" id="item-input" placeholder="" style="height:45px;" required />
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="form-group">
+              <button type="button" id="purchase-button" class="btn btn-default" style="padding:10px; width:33%" onclick="">
+                Make Purchase
+              </button>
+            </div>
+          </form>
+          <hr>
+          <form class="form-horizontal" role="form" id="change-form">
+            <h4>Change</h4>
+            <br>
+            <div class="form-group" style="display: flex; justify-content: center">
+              <div class="panel panel-default" style="width: 45%; height:75px">
+                <div id="change-box" class="panel-body"></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <button type="button" id="make-change-button" class="btn btn-default" style="padding:10px; width:33%" onclick="">
+                Change Return
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+  </div>
+</body>
+
+<script src="js/jquery-2.2.4.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/home.js"></script>
+
+</html>
