@@ -1,0 +1,118 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 1, 2019, 1:25:01 PM
+    Author     : rianu
+*/
+
+#main-container {
+    text-align:center;
+    width:100%;
+    background-color:#E9E9E9;
+    height: 100vh;
+    
+}
+
+#items-row {
+
+}
+
+#top-box {
+    background-color: #88BBD6;
+}
+
+#item-container {
+    background-color:#E9E9E9;
+}
+
+.item-class {
+    padding:35px;
+    margin:25px;
+    background-color: #99D3DF;
+    border-radius:10px;
+  }
+
+.item-class:hover {
+    background-color: gray;
+}
+
+#right-col {
+    background-color:#E9E9E9;
+}
+
+#add-money-form {
+    text-align: center;
+}
+
+#money-area {
+    display: flex;
+    justify-content: center;
+}
+
+#money-panel-main {
+    width: 45%;
+}
+
+#button-box-2 {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+#button-box-1 {
+    display: flex;
+    justify-content: center;
+    padding:10px;
+}
+
+#money-button {
+   width: 100px;
+   height:40px;
+}
+
+#message-area {
+   display: flex;
+   justify-content: center;
+}
+
+#message-panel {
+   width: 45%;
+   
+}
+
+#item-row {
+   display: flex;
+   justify-content: center;
+}
+
+#item-input {
+    height: 45px;
+}
+
+#item-box {
+    color: black;
+}
+
+#purchase-button {
+    padding: 10px;
+    width: 33%;
+}
+
+#change-area {
+    display: flex;
+    justify-content: center;
+}
+
+#change-panel {
+    width: 45%;
+    height: 75px;
+    
+}
+
+#make-change-button {
+    padding:10px;
+    width:33%;
+}
