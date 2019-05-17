@@ -56,7 +56,7 @@ public class SuperHeroSightingsDaoDbImpl implements SuperHeroSightingsDao {
                                                                        
      */
     private static final String SQL_INSERT_HERO
-            = "insert into heroes (hero_name, description)"
+            = "insert into heroes (hero_name, description) "
             + "values (?, ?)";
 
     private static final String SQL_DELETE_HERO
@@ -74,13 +74,13 @@ public class SuperHeroSightingsDaoDbImpl implements SuperHeroSightingsDao {
 
     //prepared statements HeroPowers table
     private static final String SQL_INSERT_HERO_POWERS
-            = "insert into HeroPowers (hero_id, power_id) values = (?, ?)";
+            = "insert into HeroPowers (hero_id, power_id) values(?, ?)";
     private static final String SQL_DELETE_HERO_POWERS
             = "delete from HeroPowers where hero_id = ?";
 
     //prepared statements HeroOrganization table
     private static final String SQL_INSERT_HERO_ORGANIZATION
-            = "insert into heroorganizations (hero_id, organization_id) values = (?, ?)";
+            = "insert into heroorganizations (hero_id, organization_id) values (?, ?)";
     private static final String SQL_DELETE_HERO_ORGANIZATION
             = "delete from heroorganizations where hero_id = ?";
 
@@ -134,7 +134,8 @@ public class SuperHeroSightingsDaoDbImpl implements SuperHeroSightingsDao {
                 hero.getDescription());
         hero.setHeroId(jdbcTemplate.queryForObject("select LAST_INSERT_ID()",
                 Integer.class));
-
+        this.insertHeroPowers(hero);
+        this.insertHeroOrganizations(hero);
     }
 
     @Override
@@ -179,16 +180,6 @@ public class SuperHeroSightingsDaoDbImpl implements SuperHeroSightingsDao {
                         new HeroMapper());
         return this.associateOrganizationsAndPowersWithHeroes(heroList);
 
-    }
-
-    @Override
-    public List<Sighting> findAllSightingsByDate(LocalDate date) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Hero> findAllHeroesByOrganization(int organizationId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private static final class HeroMapper implements RowMapper<Hero> {
@@ -250,9 +241,10 @@ public class SuperHeroSightingsDaoDbImpl implements SuperHeroSightingsDao {
             = "select * from locations";
 
     private static final String SQL_SELECT_LOCATIONS_BY_HERO_ID
-            = "select * from locations "
+            = "select l.location_name, l.latitude, l.longitude, l.street, "
+            + "l.city, l.zip_code, s.sighting_date from locations l "
             + "join sightings s on l.location_id = s.location_id "
-            + "join herosightings hs on s.location_id = hs.location_id "
+            + "join herosightings hs on s.sighting_id = hs.sighting_id "
             + "where hs.hero_id = ?";
 
     //prepared statements sighting table
@@ -303,8 +295,6 @@ public class SuperHeroSightingsDaoDbImpl implements SuperHeroSightingsDao {
         }
     }
 
-    
-    
     @Override
     public List<Location> findAllLocationsForHero(int heroId) {
 
@@ -385,10 +375,7 @@ public class SuperHeroSightingsDaoDbImpl implements SuperHeroSightingsDao {
             + "on p.power_id = ho.power_id "
             + "where ho.hero_id = ?";
 
-    //prepared statements HeroPowers table
-    private static final String SQL_INSERT_POWERS_HERO
-            = "insert into heropowers (hero_id, power_id) values = (?, ?)";
-    private static final String SQL_DELETE_POWERS_HERO
+    private static final String SQL_DELETE_POWER_FROM_HEROPOWERS
             = "delete from heropowers where power_id = ?";
 
     @Override
@@ -405,8 +392,8 @@ public class SuperHeroSightingsDaoDbImpl implements SuperHeroSightingsDao {
 
     @Override
     public void deletePower(int id) {
+        jdbcTemplate.update(SQL_DELETE_POWER_FROM_HEROPOWERS, id);
         jdbcTemplate.update(SQL_DELETE_POWER, id);
-        //include bridge table delete
     }
 
     @Override
@@ -490,17 +477,26 @@ public class SuperHeroSightingsDaoDbImpl implements SuperHeroSightingsDao {
 
     //prepared statements HeroSighting table
     private static final String SQL_INSERT_SIGHTING_HERO
-            = "insert into herosightings (hero_id, sighting_id) values = (?, ?)";
+            = "insert into herosightings (hero_id, sighting_id) values (?, ?)";
     private static final String SQL_DELETE_SIGHTING_HERO
             = "delete from herosightings where sighting_id = ?";
     private static final String SQL_SELECT_HEROES_BY_SIGHTING_ID
-            = "select * h.hero_id, h.hero_name, h.description, s.sighting_id "
-            + "from heroes h join herosightings hs on hero_id "
-            + "where h.hero_id = hs.hero_id and hs.hero_id = ?";
+            = "select h.hero_name, h.description, s.sighting_id, s.sighting_date "
+            + "from sightings s "
+            + "join herosightings hs on s.sighting_id = hs.sighting_id "
+            + "join heroes h on hs.hero_id = h.hero_id "
+            + "where s.sighting_id = ?";
     private static final String SQL_SELECT_LOCATION_BY_SIGHTING_ID
             = "select * from locations l "
             + "join sightings s on l.location_id = s.location_id "
             + "where s.sighting_id = ?";
+    private static final String SQL_SELECT_SIGHTINGS_BY_DATE
+            = "select l.location_name, h.hero_name, s.sighting_date "
+            + "from locations l "
+            + "join sightings s on l.location_id = s.location_id "
+            + "join herosightings hs on s.sighting_id = hs.sighting_id "
+            + "join heroes h on hs.hero_id = h.hero_id "
+            + "where s.sighting_date = ?";
 
     //helper method for finding location
     private Location findLocationForSighting(Sighting sighting) {
@@ -589,6 +585,12 @@ public class SuperHeroSightingsDaoDbImpl implements SuperHeroSightingsDao {
     }
 
     @Override
+    public List<Sighting> findAllSightingsByDate(LocalDate date) {
+        return jdbcTemplate.query(SQL_SELECT_SIGHTINGS_BY_DATE,
+                new SightingMapper());
+    }
+
+    @Override
     public List<Sighting> getAllSightings() {
 
         List<Sighting> sightingList = jdbcTemplate.query(SQL_SELECT_ALL_SIGHTINGS,
@@ -653,6 +655,12 @@ public class SuperHeroSightingsDaoDbImpl implements SuperHeroSightingsDao {
             = "select * from organizations o join heroorganizations ho "
             + "on o.organization_id = ho.organization_id "
             + "where ho.hero_id = ?";
+    private static final String SQL_SELECT_HEROES_BY_ORGANIZATION_ID
+            = "SELECT h.hero_name "
+            + "from organizations o "
+            + "join heroorganizations ho on o.organization_id = ho.organization_id "
+            + "join heroes h on ho.hero_id = h.hero_id "
+            + "where o.organization_id = ?";
 
     private static final String SQL_SELECT_ALL_ORGANIZATIONS
             = "select * from organizations";
@@ -706,6 +714,12 @@ public class SuperHeroSightingsDaoDbImpl implements SuperHeroSightingsDao {
     }
 
     @Override
+    public List<Hero> findAllHeroesByOrganization(int organizationId) {
+        return jdbcTemplate.query(SQL_SELECT_HEROES_BY_ORGANIZATION_ID,
+                new HeroMapper());
+    }
+
+    @Override
     public List<Organization> getAllOrganizations() {
         return jdbcTemplate.query(SQL_SELECT_ALL_ORGANIZATIONS,
                 new OrganizationMapper());
@@ -726,69 +740,6 @@ public class SuperHeroSightingsDaoDbImpl implements SuperHeroSightingsDao {
             o.setOrganizationId(rs.getInt("organization_id"));
             return o;
         }
-    }
-
-    /*
-    
-                                                                       
-                                                                       
- ______ ______ ______ ______ ______ ______ ______ ______ ______ ______ 
-|______|______|______|______|______|______|______|______|______|______|
-                                                                       
-                                                                       
-                                                                       
-                                                                       
-   ___  ____              _  ___  ___     _   _               _        
-   |  \/  (_)            | | |  \/  |    | | | |             | |       
-   | .  . |___  _____  __| | | .  . | ___| |_| |__   ___   __| |___    
-   | |\/| | \ \/ / _ \/ _` | | |\/| |/ _ \ __| '_ \ / _ \ / _` / __|   
-   | |  | | |>  <  __/ (_| | | |  | |  __/ |_| | | | (_) | (_| \__ \   
-   \_|  |_/_/_/\_\___|\__,_| \_|  |_/\___|\__|_| |_|\___/ \__,_|___/   
-                                                                       
-                                                                       
-                                                                       
-                                                                       
- ______ ______ ______ ______ ______ ______ ______ ______ ______ ______ 
-|______|______|______|______|______|______|______|______|______|______|
-                                                                       
-                                                                       
-                                                                       
-                                                                       
-
-     */
-    private static final String SQL_SELECT_HEROES_BY_LOCATION
-            = "select h.hero_id, h.hero_name, h.description from heroes h "
-            + "join herosightings hs on h.hero_id = hs.hero_id "
-            + "join sightings s on hs.sighting_id = s.sighting_id "
-            + "join location l on s.location_id = l.location_id where "
-            + "l.location_id = ?";
-
-    private static final String SQL_SELECT_HEROES_BY_ORGANIZATION
-            = "select h.hero_id, h.hero_name, h.description from heroes h "
-            + "join heroorganizations ho on h.hero_id = oh.hero_id "
-            + "where ho.organization_id = ?";
-
-
-
-    private static final String SQL_SELECT_LOCATIONS_BY_HERO
-            = "select h.hero_id, h.hero_name, l.location_id, l.location_name, "
-            + "l.latitude, l.longitude from locations "
-            + "join sightings s on l.location_id = s.sighting_id "
-            + "join herosightings hs on s.hero_id = hs.hero_id "
-            + "join heroes h on hs.hero_id = h.hero_id where "
-            + "h.hero_id = ?";
-
-    private static String SQL_SELECT_SIGHTINGS_BY_DATE
-            = "select h.hero_id, h.hero_name, l.location_id, l.location_name "
-            + "from locations l join sightings s on l.location_id = location_id "
-            + "join herosightings hs on s.sighting_id = hs.sighting_id "
-            + "join hero h on hs.hero_id = h.hero_id "
-            + "where s.date = ?";
-
-
-    @Override
-    public List<Sighting> getAllSightingsByDate(LocalDate date) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

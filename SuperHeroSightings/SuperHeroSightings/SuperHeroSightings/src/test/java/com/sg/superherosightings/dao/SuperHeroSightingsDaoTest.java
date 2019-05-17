@@ -5,10 +5,12 @@
  */
 package com.sg.superherosightings.dao;
 
+import com.sg.superherosightings.dto.Hero;
 import com.sg.superherosightings.dto.Location;
 import com.sg.superherosightings.dto.Organization;
 import com.sg.superherosightings.dto.Power;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -46,6 +48,11 @@ public class SuperHeroSightingsDaoTest {
                 = new ClassPathXmlApplicationContext("test-applicationContext.xml");
 
         dao = ctx.getBean("superHeroSightingsDao", SuperHeroSightingsDao.class);
+        
+        List<Hero> heroes = dao.getAllHeroes();
+        for (Hero currentHero : heroes) {
+            dao.deleteHero(currentHero.getHeroId());
+        }
 
         List<Power> powers = dao.getAllPowers();
         for (Power currentPower : powers) {
@@ -61,13 +68,147 @@ public class SuperHeroSightingsDaoTest {
         for (Location currentLocation : locations) {
             dao.deleteLocation(currentLocation.getLocation_id());
         }
+        
+   
     }
+    
 
     @After
     public void tearDown() {
     }
+    
+        /*                                                                 
+                                                                       
+ ______ ______ ______ ______ ______ ______ ______ ______ ______ ______ 
+|______|______|______|______|______|______|______|______|______|______|
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+        _   _                                                          
+       | | | |                                                         
+       | |_| | ___ _ __ ___                                            
+       |  _  |/ _ \ '__/ _ \                                           
+       | | | |  __/ | | (_) |                                          
+       \_| |_/\___|_|  \___/                                           
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+ ______ ______ ______ ______ ______ ______ ______ ______ ______ ______ 
+|______|______|______|______|______|______|______|______|______|______|
+                                                                       
+                                                                       
+     */
+    
+    public Hero createHero1() {
+        Hero h = new Hero();
+        h.setHeroName("Thor");
+        h.setDescription("God of Thunder");
+        return h;
+    }
+    @Test
+    public void addGetHero() {
+        Power power = new Power();
+        power.setPowerDescription("Eye Lasers");
+        dao.addPower(power);
+        Organization o1 = createOrg1();
+        dao.addOrganization(o1);
+        
+        Hero thor = createHero1();
+        //create organization lists and power lists
+        List<Organization> organizations = new ArrayList<>();
+        organizations.add(o1);
+        List<Power> powers = new ArrayList<>();
+        
+        //set organizations and powers to thor object
+        thor.setOrganizations(organizations);
+        thor.setPowers(powers);
+        dao.addHero(thor);
+        
+        Hero fromDao = dao.getHeroById(thor.getHeroId());
+        
+        assertEquals(fromDao, thor);
 
-    //Power tests
+    }
+    
+    @Test
+    public void deleteHero() {
+        Power power = new Power();
+        power.setPowerDescription("Eye Lasers");
+        dao.addPower(power);
+        Organization o1 = createOrg1();
+        dao.addOrganization(o1);
+        
+        Hero thor = createHero1();
+        //create organization lists and power lists
+        List<Organization> organizations = new ArrayList<>();
+        organizations.add(o1);
+        List<Power> powers = new ArrayList<>();
+        
+        //set organizations and powers to thor object
+        thor.setOrganizations(organizations);
+        thor.setPowers(powers);
+        dao.addHero(thor);;
+
+        Hero fromDao = dao.getHeroById(thor.getHeroId());
+        assertEquals(fromDao, thor);
+        dao.deleteHero(thor.getHeroId());
+        assertNull(dao.getHeroById(thor.getHeroId()));
+    }
+    
+    @Test
+    public void getAllHeroes() {
+        Power power = new Power();
+        power.setPowerDescription("Eye Lasers");
+        dao.addPower(power);
+        Organization o1 = createOrg1();
+        dao.addOrganization(o1);
+        
+        Hero thor = createHero1();
+        //create organization lists and power lists
+        List<Organization> organizations = new ArrayList<>();
+        organizations.add(o1);
+        List<Power> powers = new ArrayList<>();
+        
+        //set organizations and powers to thor object
+        thor.setOrganizations(organizations);
+        thor.setPowers(powers);
+        dao.addHero(thor);;
+
+
+        assertEquals(1, dao.getAllHeroes().size());
+    }
+    
+
+        /*
+    
+                                                                       
+                                                                       
+ ______ ______ ______ ______ ______ ______ ______ ______ ______ ______ 
+|______|______|______|______|______|______|______|______|______|______|
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                 ______                                                
+                 | ___ \                                               
+                 | |_/ /____      _____ _ __                           
+                 |  __/ _ \ \ /\ / / _ \ '__|                          
+                 | | | (_) \ V  V /  __/ |                             
+                 \_|  \___/ \_/\_/ \___|_|                             
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+ ______ ______ ______ ______ ______ ______ ______ ______ ______ ______ 
+|______|______|______|______|______|______|______|______|______|______|
+                                                                       
+                                                                   
+                                                                       
+                                                                       
+
+     */
     @Test
     public void addGetPower() {
         Power power = new Power();
@@ -118,8 +259,7 @@ public class SuperHeroSightingsDaoTest {
 
         assertEquals(power1, dao.getPowerById(power1.getPowerId()));
     }
-
-    //Orgnization tests
+    
     public Organization createOrg1() {
         Organization o = new Organization();
         o.setOrganizationName("Avengers");
@@ -196,7 +336,36 @@ public class SuperHeroSightingsDaoTest {
 
         assertEquals(o, dao.getOrganizationById(o.getOrganizationId()));
     }
+    
+        /*
+    
+                                                                       
+                                                                       
+ ______ ______ ______ ______ ______ ______ ______ ______ ______ ______ 
+|______|______|______|______|______|______|______|______|______|______|
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+        _     _____ _____   ___ _____ _____ _____ _   _                
+       | |   |  _  /  __ \ / _ \_   _|_   _|  _  | \ | |               
+       | |   | | | | /  \// /_\ \| |   | | | | | |  \| |               
+       | |   | | | | |    |  _  || |   | | | | | | . ` |               
+       | |___\ \_/ / \__/\| | | || |  _| |_\ \_/ / |\  |               
+       \_____/\___/ \____/\_| |_/\_/  \___/ \___/\_| \_/               
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+ ______ ______ ______ ______ ______ ______ ______ ______ ______ ______ 
+|______|______|______|______|______|______|______|______|______|______|
+                                                                       
+                                                                       
+                                                                       
+                                                                       
 
+     */
+    
     //location tests
     public Location createLocation1() {
         Location l = new Location();
