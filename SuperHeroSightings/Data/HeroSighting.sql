@@ -38,7 +38,7 @@ DROP TABLE IF EXISTS organizations;
 DROP TABLE IF EXISTS sightings;
 	CREATE TABLE sightings (
     sighting_id int(11) NOT NULL AUTO_INCREMENT,
-    sighting_date DATE NOT NULL,
+    sighting_date datetime NOT NULL,
     location_id int(11) NOT NULL,
     PRIMARY KEY (sighting_id)
 );
@@ -136,7 +136,7 @@ DROP TABLE IF EXISTS organizations;
 DROP TABLE IF EXISTS sightings;
 	CREATE TABLE sightings (
     sighting_id int(11) NOT NULL AUTO_INCREMENT,
-    sighting_date DATE NOT NULL,
+    sighting_date datetime NOT NULL,
     location_id int(11) NOT NULL,
     PRIMARY KEY (sighting_id)
 );
