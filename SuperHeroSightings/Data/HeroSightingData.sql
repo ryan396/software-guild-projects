@@ -1,7 +1,7 @@
 USE hero_list;
 
 /* the delete FROM is used for an initial set up of data if data already exists, so this script can be runnable. DO NOT USE IF YOU WANT TO KEEP THE DATA IN THE DATABASE! consider this a reset of the database and set initial basic data */
-
+/*
 DELETE FROM heroorganizations; 
 DELETE FROM heropowers; 
 DELETE FROM herosightings;
@@ -10,7 +10,7 @@ DELETE FROM locations;
 DELETE FROM organizations;
 DELETE FROM powers;
 DELETE FROM heroes;
-
+*/
 
 /* initial data for herosightings application */
 INSERT INTO heroes (hero_id, hero_name, description)
