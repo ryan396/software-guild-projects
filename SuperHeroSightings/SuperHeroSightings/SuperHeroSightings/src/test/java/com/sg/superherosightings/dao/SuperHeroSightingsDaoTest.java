@@ -35,6 +35,10 @@ public class SuperHeroSightingsDaoTest {
     SuperHeroSightingsDao dao;
 
     public SuperHeroSightingsDaoTest() {
+        ApplicationContext ctx
+                = new ClassPathXmlApplicationContext("test-applicationContext.xml");
+
+        dao = ctx.getBean("superHeroSightingsDao", SuperHeroSightingsDao.class);
     }
 
     @BeforeClass
@@ -47,11 +51,7 @@ public class SuperHeroSightingsDaoTest {
 
     @Before
     public void setUp() {
-        ApplicationContext ctx
-                = new ClassPathXmlApplicationContext("test-applicationContext.xml");
-
-        dao = ctx.getBean("superHeroSightingsDao", SuperHeroSightingsDao.class);
-
+        
         List<Sighting> sightings = dao.getAllSightings();
         for (Sighting currentSighting : sightings) {
             dao.deleteSighting(currentSighting.getSightingId());

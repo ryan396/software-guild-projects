@@ -41,7 +41,28 @@
     </bean>
 
     <bean id="superHeroSightingsDao" 
-          class="com.sg.superherosightings.dao.SuperHeroSightingsDaoDbImpl">
+        class="com.sg.superherosightings.dao.SuperHeroSightingsDaoDbImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+    <bean id="heroDao"
+          class="com.sg.superherosightings.dao.HeroDaoDbImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+    <bean id="locationDao"
+          class="com.sg.superherosightings.dao.LocationDaoDbImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+    <bean id="powerDao"
+          class="com.sg.superherosightings.dao.PowerDaoDbImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+    <bean id="sightingDao"
+          class="com.sg.superherosightings.dao.SightingDaoDbImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+        <constructor-arg ref="heroDao"/>
+    </bean>
+     <bean id="organizationDao"
+          class="com.sg.superherosightings.dao.OrganizationDaoDbImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
 </beans>
