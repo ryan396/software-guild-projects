@@ -40,10 +40,6 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <bean id="superHeroSightingsDao" 
-        class="com.sg.superherosightings.dao.SuperHeroSightingsDaoDbImpl">
-        <property name="jdbcTemplate" ref="jdbcTemplate"/>
-    </bean>
     <bean id="heroDao"
           class="com.sg.superherosightings.dao.HeroDaoDbImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
