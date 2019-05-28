@@ -65,4 +65,24 @@
           class="com.sg.superherosightings.dao.OrganizationDaoDbImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
+     <bean id="heroService"
+          class="com.sg.superherosightings.service.HeroServiceImpl">
+        <constructor-arg ref="heroDao"/>
+    </bean>
+    <bean id="locationService"
+          class="com.sg.superherosightings.service.LocationServiceImpl">
+        <constructor-arg ref="locationDao"/>
+    </bean>
+    <bean id="organizationService"
+          class="com.sg.superherosightings.service.OrganizationServiceImpl">
+        <constructor-arg ref="organizationDao"/>
+    </bean>
+    <bean id="powerService"
+          class="com.sg.superherosightings.service.PowerServiceImpl">
+        <constructor-arg ref="powerDao"/>
+    </bean>
+     <bean id="sightingService"
+          class="com.sg.superherosightings.service.SightingServiceImpl">
+        <constructor-arg ref="sightingDao"/>
+    </bean>
 </beans>
