@@ -28,7 +28,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  *
  * @author rianu
  */
-public class HeroDaoTest {
+public class SightingDaoTest {
 
     private HeroDao hDao;
 
@@ -40,7 +40,7 @@ public class HeroDaoTest {
 
     private SightingDao sDao;
 
-    public HeroDaoTest() {
+    public SightingDaoTest() {
 
         ApplicationContext ctx
                 = new ClassPathXmlApplicationContext("test-applicationContext.xml");
@@ -50,6 +50,7 @@ public class HeroDaoTest {
         oDao = ctx.getBean("organizationDao", OrganizationDao.class);
         pDao = ctx.getBean("powerDao", PowerDao.class);
         sDao = ctx.getBean("sightingDao", SightingDao.class);
+
     }
 
     @BeforeClass
@@ -62,7 +63,6 @@ public class HeroDaoTest {
 
     @Before
     public void setUp() {
-
 
         List<Sighting> sightings = sDao.getAllSightings();
         for (Sighting currentSighting : sightings) {
@@ -94,9 +94,6 @@ public class HeroDaoTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of addHero method, of class HeroDao.
-     */
     public Hero createHero1() {
         Hero h = new Hero();
         h.setHeroName("Thor");
@@ -162,7 +159,7 @@ public class HeroDaoTest {
     }
 
     @Test
-    public void addGetHero() {
+    public void addGetSighting() {
         Power power = new Power();
         power.setPowerDescription("Eye Lasers");
         pDao.addPower(power);
@@ -180,159 +177,233 @@ public class HeroDaoTest {
         thor.setPowers(powers);
         hDao.addHero(thor);
 
-        Hero fromDao = hDao.getHeroById(thor.getHeroId());
-
-        assertEquals(fromDao, thor);
-
-    }
-
-
-    @Test
-    public void deleteHero() {
-        Power power = new Power();
-        power.setPowerDescription("Eye Lasers");
-        pDao.addPower(power);
-        Organization o1 = createOrg1();
-        oDao.addOrganization(o1);
-
-        Hero thor = createHero1();
-        //create organization lists and power lists
-        List<Organization> organizations = new ArrayList<>();
-        organizations.add(o1);
-        List<Power> powers = new ArrayList<>();
-
-        //set organizations and powers to thor object
-        thor.setOrganizations(organizations);
-        thor.setPowers(powers);
-        hDao.addHero(thor);;
-
-        Hero fromDao = hDao.getHeroById(thor.getHeroId());
-        assertEquals(fromDao, thor);
-        hDao.deleteHero(thor.getHeroId());
-        assertNull(hDao.getHeroById(thor.getHeroId()));
-    }
-
-    @Test
-    public void getAllHeroes() {
-        Power power = new Power();
-        power.setPowerDescription("Eye Lasers");
-        pDao.addPower(power);
-        Organization o1 = createOrg1();
-        oDao.addOrganization(o1);
-
-        Hero thor = createHero1();
-        //create organization lists and power lists
-        List<Organization> organizations = new ArrayList<>();
-        organizations.add(o1);
-        List<Power> powers = new ArrayList<>();
-
-        //set organizations and powers to thor object
-        thor.setOrganizations(organizations);
-        thor.setPowers(powers);
-        hDao.addHero(thor);
-
-        assertEquals(1, hDao.getAllHeroes().size());
-    }
-
-    @Test
-    public void updateHero() {
-        Power power = new Power();
-        power.setPowerDescription("Eye Lasers");
-        pDao.addPower(power);
-        Organization o1 = createOrg1();
-        oDao.addOrganization(o1);
-
-        Hero thor = createHero1();
-        //create organization lists and power lists
-        List<Organization> organizations = new ArrayList<>();
-        organizations.add(o1);
-        List<Power> powers = new ArrayList<>();
-
-        //set organizations and powers to thor object
-        thor.setOrganizations(organizations);
-        thor.setPowers(powers);
-        hDao.addHero(thor);
-
-        thor.setDescription("Asgardian God of Thunder");
-
-        hDao.updateHero(thor);
-
-        Hero fromDao = hDao.getHeroById(thor.getHeroId());
-        assertEquals(fromDao, thor);
-    }
-
-    @Test
-    public void findOrganizationsForHero() {
-        Power power = new Power();
-        power.setPowerDescription("Eye Lasers");
-        pDao.addPower(power);
-        Organization o1 = createOrg1();
-        oDao.addOrganization(o1);
-
-        Organization o2 = createOrg2();
-        oDao.addOrganization(o2);
-
-        Hero thor = createHero1();
-        //create organization lists and power lists
-        List<Organization> organizations = new ArrayList<>();
-        organizations.add(o1);
-        organizations.add(o2);
-        List<Power> powers = new ArrayList<>();
-
-        //set organizations and powers to thor object
-        thor.setOrganizations(organizations);
-        thor.setPowers(powers);
-        hDao.addHero(thor);
-
-        List<Organization> fromDao = hDao.findOrganizationsForHero(thor);
-
-        assertEquals(fromDao, organizations);
-    }
-
-    @Test
-    public void findHeroesForLocation() {
-        Power power = new Power();
-        power.setPowerDescription("Eye Lasers");
-        pDao.addPower(power);
-        Organization o1 = createOrg1();
-        oDao.addOrganization(o1);
-
-        Organization o2 = createOrg2();
-        oDao.addOrganization(o2);
-
-        Hero thor = createHero1();
-
-        List<Organization> organizations = new ArrayList<>();
-        organizations.add(o1);
-        organizations.add(o2);
-        List<Power> powers = new ArrayList<>();
-        powers.add(power);
-
-        thor.setOrganizations(organizations);
-        thor.setPowers(powers);
-        hDao.addHero(thor);
-
-        Hero ironMan = createHero2();
-
-        ironMan.setOrganizations(organizations);
-        ironMan.setPowers(powers);
-        hDao.addHero(ironMan);
+        List<Hero> heroes = new ArrayList<>();
+        heroes.add(thor);
 
         Location l = createLocation1();
         lDao.addLocation(l);
 
-        List<Hero> heroList = new ArrayList<>();
-        heroList.add(thor);
-        heroList.add(ironMan);
+        Sighting s = new Sighting();
+        s.setDate(LocalDate.parse("2019-05-01", DateTimeFormatter.ISO_DATE));
+        s.setHeroes(heroes);
+        s.setLocationId(lDao.getLocationById(l.getLocationId()).getLocationId());
+
+        sDao.addSighting(s);
+
+        Sighting fromDao = sDao.getSightingById(s.getSightingId());
+        assertTrue(fromDao.equals(s));
+    }
+
+    @Test
+    public void deleteSighting() {
+        Power power = new Power();
+        power.setPowerDescription("Eye Lasers");
+        pDao.addPower(power);
+        Organization o1 = createOrg1();
+        oDao.addOrganization(o1);
+
+        Hero thor = createHero1();
+        //create organization lists and power lists
+        List<Organization> organizations = new ArrayList<>();
+        organizations.add(o1);
+        List<Power> powers = new ArrayList<>();
+
+        //set organizations and powers to thor object
+        thor.setOrganizations(organizations);
+        thor.setPowers(powers);
+        hDao.addHero(thor);
+
+        List<Hero> heroes = new ArrayList<>();
+        heroes.add(thor);
+
+        Location l = createLocation1();
+        lDao.addLocation(l);
 
         Sighting s = new Sighting();
         s.setDate(LocalDate.parse("2019-05-01", DateTimeFormatter.ISO_DATE));
-        s.setHeroes(heroList);
+        s.setHeroes(heroes);
         s.setLocationId(lDao.getLocationById(l.getLocationId()).getLocationId());
+
         sDao.addSighting(s);
 
-        List<Hero> fromDao = hDao.findAllHeroesForLocation(l.getLocationId());
-        assertTrue(heroList.equals(fromDao));
+        Sighting fromDao = sDao.getSightingById(s.getSightingId());
+        assertTrue(fromDao.equals(s));
+
+        sDao.deleteSighting(s.getSightingId());
+
+        assertNull(sDao.getSightingById(s.getSightingId()));
+    }
+
+    @Test
+    public void getAllSightings() {
+        Power power = new Power();
+        power.setPowerDescription("Eye Lasers");
+        pDao.addPower(power);
+        Organization o1 = createOrg1();
+        oDao.addOrganization(o1);
+
+        Hero thor = createHero1();
+        //create organization lists and power lists
+        List<Organization> organizations = new ArrayList<>();
+        organizations.add(o1);
+        List<Power> powers = new ArrayList<>();
+
+        //set organizations and powers to thor object
+        thor.setOrganizations(organizations);
+        thor.setPowers(powers);
+        hDao.addHero(thor);
+
+        List<Hero> heroes = new ArrayList<>();
+        heroes.add(thor);
+
+        Location l = createLocation1();
+        lDao.addLocation(l);
+
+        Sighting s = new Sighting();
+        s.setDate(LocalDate.parse("2019-05-01", DateTimeFormatter.ISO_DATE));
+        s.setHeroes(heroes);
+        s.setLocationId(lDao.getLocationById(l.getLocationId()).getLocationId());
+
+        sDao.addSighting(s);
+
+        Power power2 = new Power();
+        power2.setPowerDescription("Flight");
+        pDao.addPower(power2);
+        Organization o2 = createOrg2();
+        oDao.addOrganization(o2);
+
+        Hero ironMan = createHero2();
+        //create organization lists and power lists
+        List<Organization> organizations2 = new ArrayList<>();
+        organizations2.add(o2);
+        List<Power> powers2 = new ArrayList<>();
+
+        //set organizations and powers to thor object
+        ironMan.setOrganizations(organizations2);
+        ironMan.setPowers(powers2);
+        hDao.addHero(ironMan);
+
+        List<Hero> heroes2 = new ArrayList<>();
+        heroes2.add(thor);
+
+        Location l2 = createLocation2();
+        lDao.addLocation(l2);
+
+        Sighting s2 = new Sighting();
+        s2.setDate(LocalDate.parse("2019-05-01", DateTimeFormatter.ISO_DATE));
+        s2.setHeroes(heroes2);
+        s2.setLocationId(lDao.getLocationById(l2.getLocationId()).getLocationId());
+
+        sDao.addSighting(s2);
+
+        assertEquals(2, sDao.getAllSightings().size());
+    }
+
+    @Test
+    public void updateSighting() {
+        Power power = new Power();
+        power.setPowerDescription("Eye Lasers");
+        pDao.addPower(power);
+        Organization o1 = createOrg1();
+        oDao.addOrganization(o1);
+
+        Hero thor = createHero1();
+        //create organization lists and power lists
+        List<Organization> organizations = new ArrayList<>();
+        organizations.add(o1);
+        List<Power> powers = new ArrayList<>();
+
+        //set organizations and powers to thor object
+        thor.setOrganizations(organizations);
+        thor.setPowers(powers);
+        hDao.addHero(thor);
+
+        List<Hero> heroes = new ArrayList<>();
+        heroes.add(thor);
+
+        Location l = createLocation1();
+        lDao.addLocation(l);
+
+        Sighting s = new Sighting();
+        s.setDate(LocalDate.parse("2019-05-01", DateTimeFormatter.ISO_DATE));
+        s.setHeroes(heroes);
+        s.setLocationId(lDao.getLocationById(l.getLocationId()).getLocationId());
+
+        sDao.addSighting(s);
+        s.setDate(LocalDate.parse("2019-05-02", DateTimeFormatter.ISO_DATE));
+        sDao.updateSighting(s);
+
+        Sighting fromDao = sDao.getSightingById(s.getSightingId());
+        assertTrue(fromDao.equals(s));
 
     }
+
+    @Test
+    public void findAllSightingsByDate() {
+        Power power = new Power();
+        power.setPowerDescription("Eye Lasers");
+        pDao.addPower(power);
+        Organization o1 = createOrg1();
+        oDao.addOrganization(o1);
+
+        Hero thor = createHero1();
+        //create organization lists and power lists
+        List<Organization> organizations = new ArrayList<>();
+        organizations.add(o1);
+        List<Power> powers = new ArrayList<>();
+
+        //set organizations and powers to thor object
+        thor.setOrganizations(organizations);
+        thor.setPowers(powers);
+        hDao.addHero(thor);
+
+        List<Hero> heroes = new ArrayList<>();
+        heroes.add(thor);
+
+        Location l = createLocation1();
+        lDao.addLocation(l);
+
+        Sighting s = new Sighting();
+        s.setDate(LocalDate.parse("2019-05-01", DateTimeFormatter.ISO_DATE));
+        s.setHeroes(heroes);
+        s.setLocationId(lDao.getLocationById(l.getLocationId()).getLocationId());
+
+        sDao.addSighting(s);
+
+        Power power2 = new Power();
+        power2.setPowerDescription("Flight");
+        pDao.addPower(power2);
+        Organization o2 = createOrg2();
+        oDao.addOrganization(o2);
+
+        Hero ironMan = createHero2();
+        //create organization lists and power lists
+        List<Organization> organizations2 = new ArrayList<>();
+        organizations2.add(o2);
+        List<Power> powers2 = new ArrayList<>();
+
+        //set organizations and powers to thor object
+        ironMan.setOrganizations(organizations2);
+        ironMan.setPowers(powers2);
+        hDao.addHero(ironMan);
+
+        List<Hero> heroes2 = new ArrayList<>();
+        heroes2.add(thor);
+
+        Location l2 = createLocation2();
+        lDao.addLocation(l2);
+
+        Sighting s2 = new Sighting();
+        s2.setDate(LocalDate.parse("2019-05-01", DateTimeFormatter.ISO_DATE));
+        s2.setHeroes(heroes2);
+        s2.setLocationId(lDao.getLocationById(l2.getLocationId()).getLocationId());
+
+        sDao.addSighting(s2);
+
+        List<Sighting> fromDao
+                = sDao.findAllSightingsByDate(LocalDate.parse("2019-05-01"));
+
+        assertEquals(2, fromDao.size());
+    }
+
 }
