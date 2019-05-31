@@ -46,13 +46,9 @@
                 </ul>
             </c:forEach>
             <br>
-            <div class="form-group">
-                <div class="col-md-4 col-md-2">
-                    <a type="button" id="cancel-o-details-button" class="btn btn-default" href="${pageContext.request.contextPath}/displayOrganizationPage">
-                        Back
-                    </a>
-                </div>
-            </div>
+            <a type="button" id="cancel-o-details-button" class="btn btn-default" href="${pageContext.request.contextPath}/displayOrganizationPage">
+                Back
+            </a>
         </div>
 
         <!-- Placed at the end of the document so the pages load faster -->

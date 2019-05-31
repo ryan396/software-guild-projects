@@ -21,14 +21,22 @@ import org.springframework.jdbc.core.RowMapper;
 public class LocationDaoDbImpl implements LocationDao {
     
     private JdbcTemplate jdbcTemplate;
+  
+    
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
     
+
+    
     private static final String SQL_INSERT_LOCATION
             = "insert into locations (location_name, latitude, longitude, "
             + "street, city, zip_code) values (?, ?, ?, ?, ?, ?)";
+    
+    private static final String SQL_UPDATE_SIGHTINGS_FOR_DELETE
+            = "update sightings set location_id = null "
+            + "where location_id = ?";
 
     private static final String SQL_DELETE_LOCATION
             = "delete from locations where location_id = ?";
@@ -44,10 +52,8 @@ public class LocationDaoDbImpl implements LocationDao {
     private static final String SQL_SELECT_ALL_LOCATIONS
             = "select * from locations";
 
-    //prepared statements sighting table
-    private static final String SQL_DELETE_SIGHTING_BY_LOCATION
-            = "delete from sightings where location_id = ?";
 
+    
     @Override
     public void addLocation(Location location) {
         jdbcTemplate.update(SQL_INSERT_LOCATION,
@@ -65,9 +71,8 @@ public class LocationDaoDbImpl implements LocationDao {
 
     @Override
     public void deleteLocation(int id) {
-        jdbcTemplate.update(SQL_DELETE_SIGHTING_BY_LOCATION, id);
+        jdbcTemplate.update(SQL_UPDATE_SIGHTINGS_FOR_DELETE, id);
         jdbcTemplate.update(SQL_DELETE_LOCATION, id);
-        //manage hero sightings bridge
     }
 
     @Override

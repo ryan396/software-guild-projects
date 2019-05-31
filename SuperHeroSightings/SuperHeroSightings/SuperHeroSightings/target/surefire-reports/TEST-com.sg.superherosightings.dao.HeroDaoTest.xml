@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="6" failures="0" name="com.sg.superherosightings.dao.HeroDaoTest" time="0.658" errors="0" skipped="0">
+<testsuite tests="6" failures="0" name="com.sg.superherosightings.dao.HeroDaoTest" time="0.649" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_191\jre\bin"/>
@@ -18,6 +18,7 @@
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="user.dir" value="C:\Users\rianu\OneDrive\Documents\repos\bitbucket\ryan-horstman-individual-work\SuperHeroSightings\SuperHeroSightings\SuperHeroSightings"/>
     <property name="java.runtime.version" value="1.8.0_191-b12"/>
+    <property name="netbeans.deploy" value="true"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_191\jre\lib\endorsed"/>
     <property name="os.arch" value="amd64"/>
@@ -47,7 +48,7 @@
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_191\jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dmaven.ext.class.path=C:\Program Files\NetBeans 8.2\java\maven-nblib\netbeans-eventspy.jar clean install"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dnetbeans.deploy=true -Dmaven.ext.class.path=C:\Program Files\NetBeans 8.2\java\maven-nblib\netbeans-eventspy.jar package"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -64,10 +65,10 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="com.sg.superherosightings.dao.HeroDaoTest" name="getAllHeroes" time="0.346"/>
-  <testcase classname="com.sg.superherosightings.dao.HeroDaoTest" name="updateHero" time="0.06"/>
-  <testcase classname="com.sg.superherosightings.dao.HeroDaoTest" name="findOrganizationsForHero" time="0.05"/>
-  <testcase classname="com.sg.superherosightings.dao.HeroDaoTest" name="deleteHero" time="0.047"/>
-  <testcase classname="com.sg.superherosightings.dao.HeroDaoTest" name="addGetHero" time="0.041"/>
-  <testcase classname="com.sg.superherosightings.dao.HeroDaoTest" name="findHeroesForLocation" time="0.114"/>
+  <testcase classname="com.sg.superherosightings.dao.HeroDaoTest" name="getAllHeroes" time="0.345"/>
+  <testcase classname="com.sg.superherosightings.dao.HeroDaoTest" name="updateHero" time="0.054"/>
+  <testcase classname="com.sg.superherosightings.dao.HeroDaoTest" name="findOrganizationsForHero" time="0.055"/>
+  <testcase classname="com.sg.superherosightings.dao.HeroDaoTest" name="deleteHero" time="0.059"/>
+  <testcase classname="com.sg.superherosightings.dao.HeroDaoTest" name="addGetHero" time="0.037"/>
+  <testcase classname="com.sg.superherosightings.dao.HeroDaoTest" name="findHeroesForLocation" time="0.099"/>
 </testsuite>

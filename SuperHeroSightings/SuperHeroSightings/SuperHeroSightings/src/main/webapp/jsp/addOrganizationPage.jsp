@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
-        <title>JSP Page</title>
+        <title>Add Organization Page</title>
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">  
     </head>
     <body>

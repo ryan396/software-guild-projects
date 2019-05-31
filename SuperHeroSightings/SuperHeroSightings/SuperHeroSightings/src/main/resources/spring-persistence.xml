@@ -47,6 +47,7 @@
     <bean id="locationDao"
           class="com.sg.superherosightings.dao.LocationDaoDbImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
+        
     </bean>
     <bean id="powerDao"
           class="com.sg.superherosightings.dao.PowerDaoDbImpl">
