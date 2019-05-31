@@ -46,7 +46,7 @@ public class OrganizationDaoDbImpl implements OrganizationDao {
     private static final String SQL_SELECT_ALL_ORGANIZATIONS
             = "select * from organizations";
     private static final String SQL_DELETE_HERO_ORGANIZATION
-            = "delete from heroorganizations where hero_id = ?";
+            = "delete from heroorganizations where organization_id = ?";
 
     @Override
     @Transactional
