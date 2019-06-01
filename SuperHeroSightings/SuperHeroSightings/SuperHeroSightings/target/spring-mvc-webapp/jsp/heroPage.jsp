@@ -30,16 +30,17 @@
                         Add Hero
                     </a>
                 </div>
-                <form role="form" id="search-form">
+                <form role="form" id="search-form" method="POST" 
+                  action="search">
                     <div class="col-md-3">
-                        <button type="button" id="search-button" class="btn btn-default">
+                        <button type="submit" id="search-button" class="btn btn-default">
                             Search
                         </button>
                     </div>
                     <div class="col-md-3">
                         <div class="col-md-8">
-                            <select id="searchCategory" class="bootstrap-select btn btn-default"> 
-                                <option value="" disabled selected>Organization Name</option>
+                            <select id="searchCategory" name="organizationId" class="bootstrap-select btn btn-default"> 
+                                <option value="0" selected>Organization Name</option>
                                 <c:forEach items="${organizationList}" var="currentOrganization">
                                     <option value="${currentOrganization.organizationId}">${currentOrganization.organizationName}</option>
                                 </c:forEach>
@@ -60,7 +61,7 @@
                         <c:forEach var="currentHero" items="${heroList}">
                             <tr>
                                 <td>
-                                    <c:out value="${currentHero.description}"/>
+                                    <c:out value="${currentHero.heroName}"/>
                                 </td>
                                 <td>
                                     <c:out value="${currentHero.description}"/>
