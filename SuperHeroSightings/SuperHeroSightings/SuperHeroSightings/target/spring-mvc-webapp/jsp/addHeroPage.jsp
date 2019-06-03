@@ -12,12 +12,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
-        <title>Add Location Page</title>
+        <title>Add Hero</title>
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">  
     </head>
     <body>
         <div class="col-md-6">
-            <h2>Add New Location</h2>
+            <h2>Add New Hero</h2>
             <hr>
             <form class="form-horizontal" 
                   role="form" method="POST" 
@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="add-organizations" class="col-md-4 control-label">Zip Code:</label>
+                    <label for="add-organizations" class="col-md-4 control-label">Organization:</label>
                     <div class="col-md-8">
                         <div class="col-md-8">
                             <div class="form-check">

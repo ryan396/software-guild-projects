@@ -1,3 +1,9 @@
+<%-- 
+    Document   : SightingPage
+    Created on : May 29, 2019, 7:42:16 PM
+    Author     : rianu
+--%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -5,32 +11,65 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Record Sightings</title>
-        <!-- Bootstrap core CSS -->
-        <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">        
+        <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+        <title>Sightings</title>
+        <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet"> 
+        <link href="${pageContext.request.contextPath}/css/superhero.css" rel="stylesheet"> 
+
     </head>
     <body>
         <div class="container">
-            <h1>Record Sighting</h1>
-            <hr/>
+            <h2>Sightings</h2>
+            <hr>
             <div class="navbar">
                 <ul class="nav nav-tabs">
                     <li role="presentation" class="active"><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
-                    <li role="presentation"><a href="${pageContext.request.contextPath}/displaySightingPage">Record A Sighting</a></li>
+                    <li role="presentation"><a href="${pageContext.request.contextPath}/displaySightingPage">Sightings</a></li>
                     <li role="presentation"><a href="${pageContext.request.contextPath}/displayHeroPage">Hero Information</a></li>
                     <li role="presentation"><a href="${pageContext.request.contextPath}/displayLocationPage">Location Information</a></li>
-                    <li role="presentation"><a href="${pageContext.request.contextPath}/displayOrganizationPage">Organizations</a></li>
                     <li role="presentation"><a href="${pageContext.request.contextPath}/displayPowerPage">Hero Powers</a></li>
                     <li role="presentation"><a href="${pageContext.request.contextPath}/displayLoginPage">Login</a></li>
                 </ul>    
             </div>
             <hr>
-            <h2>Latest Sightings</h2>
+            <div id="topBar" class="row">
+                <div class="col-md-3">
+                    <a href="${pageContext.request.contextPath}/displayRecordSightingPage" type="button" id="add-sighting-button" class="btn btn-default">
+                        Record Sighting
+                    </a>
+                </div>
+            </div>
+            <hr>
+            <div class="col-md-12">
+                <table id="displayTable" class="table table-hover">
+                    <tr>
+                        <th width="30%">Sighting Date</th>
+                        <th width="10%"></th>
+                        <th width="10%"></th>
+                    </tr>
+                    <c:forEach var="currentSighting" items="${sightingList}">
+                        <tr>
+                            <td>
+                                <a href="displaySightingDetails?sightingId=${currentSighting.sightingId}">
+                                    <c:out value="${currentSighting.date}"/>
+                                </a>
+                            </td>  
+                            <td>
+                                <a href="displayEditSightingPage?sightingId=${currentSighting.sightingId}">
+                                    Edit
+                                </a>
+                            </td>
+                            <td>
+                                <a href="deleteSighting?sightingId=${currentSighting.sightingId}">
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </div>
         </div>
-        <!-- Placed at the end of the document so the pages load faster -->
         <script src="${pageContext.request.contextPath}/js/jquery-3.1.1.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-
     </body>
 </html>
-

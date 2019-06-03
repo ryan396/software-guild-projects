@@ -17,6 +17,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -52,6 +53,23 @@ public class HeroController {
         return "heroPage";
     }
 
+    @RequestMapping(value = "/displayHeroDetails", method = RequestMethod.GET)
+    public String displayHeroDetails(HttpServletRequest request, Model model) {
+        String heroIdParameter = request.getParameter("heroId");
+        int heroId = Integer.parseInt(heroIdParameter);
+
+        Hero hero = hService.getHeroById(heroId);
+
+        List<Power> powerList = hero.getPowers();
+        List<Organization> organizationList = hero.getOrganizations();
+
+        model.addAttribute("hero", hero);
+        model.addAttribute("powerList", powerList);
+        model.addAttribute("organizationList", organizationList);
+
+        return "heroDetails";
+    }
+
     @RequestMapping(value = "/displayAddHeroPage", method = RequestMethod.GET)
     public String displayAddHeroPage(Model model) {
 
@@ -81,28 +99,67 @@ public class HeroController {
 
     @RequestMapping(value = "/addHero", method = RequestMethod.POST)
     public String addHero(HttpServletRequest request, ArrayList<Integer> powerList, ArrayList<Integer> organizationList) {
- 
+
         Hero hero = new Hero();
         hero.setHeroName(request.getParameter("heroName"));
         hero.setDescription(request.getParameter("description"));
-        
+
         List<Power> currentHeroPowers = new ArrayList();
         for (int currentPowerInt : powerList) {
             currentHeroPowers.add(pService.getPowerById(currentPowerInt));
         }
         hero.setPowers(currentHeroPowers);
-        
+
         List<Organization> currentHeroOrganizations = new ArrayList();
-        for (int currentOrganizationInt: organizationList) {
+        for (int currentOrganizationInt : organizationList) {
             currentHeroOrganizations.add(oService.getOrganizationById(currentOrganizationInt));
         }
         hero.setOrganizations(currentHeroOrganizations);
-        
+
         hService.addHero(hero);
-        
 
         return "redirect:displayHeroPage";
     }
-    
-    
+
+    @RequestMapping(value = "/deleteHero", method = RequestMethod.GET)
+    public String deleteHero(HttpServletRequest request) {
+        String heroIdParameter = request.getParameter("heroId");
+        int heroId = Integer.parseInt(heroIdParameter);
+        hService.deleteHero(heroId);
+        return "redirect:displayHeroPage";
+    }
+
+    @RequestMapping(value = "/displayEditHeroPage", method = RequestMethod.GET)
+    public String displayEditHeroPage(HttpServletRequest request, Model model) {
+        String heroIdParameter = request.getParameter("heroId");
+        int heroId = Integer.parseInt(heroIdParameter);
+        Hero hero = hService.getHeroById(heroId);
+        List<Power> powerList = pService.getAllPowers();
+        List<Organization> organizationList = oService.getAllOrganizations();
+
+        model.addAttribute("powerList", powerList);
+        model.addAttribute("organizationList", organizationList);
+        model.addAttribute("hero", hero);
+        return "editHeroPage";
+    }
+
+    @RequestMapping(value = "/editHero", method = RequestMethod.GET)
+    public String editHero(@ModelAttribute("hero") Hero hero, ArrayList<Integer> powerList, ArrayList<Integer> organizationList) {
+
+        List<Power> currentHeroPowers = new ArrayList();
+        for (int currentPowerInt : powerList) {
+            currentHeroPowers.add(pService.getPowerById(currentPowerInt));
+        }
+        hero.setPowers(currentHeroPowers);
+
+        List<Organization> currentHeroOrganizations = new ArrayList();
+        for (int currentOrganizationInt : organizationList) {
+            currentHeroOrganizations.add(oService.getOrganizationById(currentOrganizationInt));
+        }
+        hero.setOrganizations(currentHeroOrganizations);
+
+        hService.updateHero(hero);
+        return "redirect:displayHeroPage";
+    }
+
 }

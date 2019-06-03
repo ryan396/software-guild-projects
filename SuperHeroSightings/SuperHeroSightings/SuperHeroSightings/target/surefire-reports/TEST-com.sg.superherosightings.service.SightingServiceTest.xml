@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="5" failures="0" name="com.sg.superherosightings.service.SightingServiceTest" time="0.231" errors="0" skipped="0">
+<testsuite tests="5" failures="0" name="com.sg.superherosightings.service.SightingServiceTest" time="0.206" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_191\jre\bin"/>
@@ -65,9 +65,9 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="com.sg.superherosightings.service.SightingServiceTest" name="deleteSighting" time="0.024"/>
-  <testcase classname="com.sg.superherosightings.service.SightingServiceTest" name="addGetSighting" time="0.036"/>
-  <testcase classname="com.sg.superherosightings.service.SightingServiceTest" name="getAllSightings" time="0.048"/>
-  <testcase classname="com.sg.superherosightings.service.SightingServiceTest" name="findAllSightingsByDate" time="0.071"/>
-  <testcase classname="com.sg.superherosightings.service.SightingServiceTest" name="updateSighting" time="0.052"/>
+  <testcase classname="com.sg.superherosightings.service.SightingServiceTest" name="deleteSighting" time="0.025"/>
+  <testcase classname="com.sg.superherosightings.service.SightingServiceTest" name="addGetSighting" time="0.03"/>
+  <testcase classname="com.sg.superherosightings.service.SightingServiceTest" name="getAllSightings" time="0.041"/>
+  <testcase classname="com.sg.superherosightings.service.SightingServiceTest" name="findAllSightingsByDate" time="0.065"/>
+  <testcase classname="com.sg.superherosightings.service.SightingServiceTest" name="updateSighting" time="0.045"/>
 </testsuite>

@@ -65,8 +65,8 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="com.sg.superherosightings.service.PowerServiceTest" name="deletePower" time="0.026"/>
+  <testcase classname="com.sg.superherosightings.service.PowerServiceTest" name="deletePower" time="0.021"/>
   <testcase classname="com.sg.superherosightings.service.PowerServiceTest" name="updatePower" time="0.016"/>
-  <testcase classname="com.sg.superherosightings.service.PowerServiceTest" name="getAllPowers" time="0.02"/>
-  <testcase classname="com.sg.superherosightings.service.PowerServiceTest" name="addGetPower" time="0.02"/>
+  <testcase classname="com.sg.superherosightings.service.PowerServiceTest" name="getAllPowers" time="0.021"/>
+  <testcase classname="com.sg.superherosightings.service.PowerServiceTest" name="addGetPower" time="0.024"/>
 </testsuite>

@@ -7,7 +7,8 @@
     <head>
         <title>Hero Powers</title>
         <!-- Bootstrap core CSS -->
-        <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">        
+        <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">      
+        <link href="${pageContext.request.contextPath}/css/superhero.css" rel="stylesheet"> 
     </head>
     <body>
         <div class="container">
@@ -16,7 +17,7 @@
             <div class="navbar">
                 <ul class="nav nav-tabs">
                     <li role="presentation" class="active"><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
-                    <li role="presentation"><a href="${pageContext.request.contextPath}/displaySightingPage">Record A Sighting</a></li>
+                    <li role="presentation"><a href="${pageContext.request.contextPath}/displaySightingPage">Sightings</a></li>
                     <li role="presentation"><a href="${pageContext.request.contextPath}/displayHeroPage">Hero Information</a></li>
                     <li role="presentation"><a href="${pageContext.request.contextPath}/displayLocationPage">Location Information</a></li>
                     <li role="presentation"><a href="${pageContext.request.contextPath}/displayOrganizationPage">Organizations</a></li>
@@ -33,8 +34,8 @@
                 </div>
             </div>
             <hr>
-            <div class="col-md-4">
-                <table id="powerTable" class="table table-hover">
+            <div class="col-md-12">
+                <table id="displayTable" class="table table-hover">
                     <tr>
                         <th width="35%">Power Name</th>
                         <th width="10%"></th>

@@ -7,7 +7,8 @@
     <head>
         <title>Index Page</title>
         <!-- Bootstrap core CSS -->
-        <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">        
+        <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet"> 
+        <link href="${pageContext.request.contextPath}/css/superhero.css" rel="stylesheet"> 
     </head>
     <body>
         <div class="container">
@@ -16,7 +17,7 @@
             <div class="navbar">
                 <ul class="nav nav-tabs">
                     <li role="presentation" class="active"><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
-                    <li role="presentation"><a href="${pageContext.request.contextPath}/displaySightingPage">Record A Sighting</a></li>
+                    <li role="presentation"><a href="${pageContext.request.contextPath}/displaySightingPage">Sightings</a></li>
                     <li role="presentation"><a href="${pageContext.request.contextPath}/displayHeroPage">Hero Information</a></li>
                     <li role="presentation"><a href="${pageContext.request.contextPath}/displayLocationPage">Location Information</a></li>
                     <li role="presentation"><a href="${pageContext.request.contextPath}/displayOrganizationPage">Organizations</a></li>

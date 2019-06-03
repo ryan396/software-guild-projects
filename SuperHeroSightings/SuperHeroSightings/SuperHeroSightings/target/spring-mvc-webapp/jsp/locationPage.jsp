@@ -14,6 +14,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
         <title>Location Information</title>
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet"> 
+        <link href="${pageContext.request.contextPath}/css/superhero.css" rel="stylesheet"> 
 
     </head>
     <body>
@@ -23,7 +24,7 @@
             <div class="navbar">
                 <ul class="nav nav-tabs">
                     <li role="presentation" class="active"><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
-                    <li role="presentation"><a href="${pageContext.request.contextPath}/displaySightingPage">Record A Sighting</a></li>
+                    <li role="presentation"><a href="${pageContext.request.contextPath}/displaySightingPage">Sightings</a></li>
                     <li role="presentation"><a href="${pageContext.request.contextPath}/displayHeroPage">Hero Information</a></li>
                     <li role="presentation"><a href="${pageContext.request.contextPath}/displayLocationPage">Location Information</a></li>
                     <li role="presentation"><a href="${pageContext.request.contextPath}/displayOrganizationPage">Organizations</a></li>
@@ -41,7 +42,7 @@
             </div>
             <hr>
             <div class="col-md-12">
-                <table id="locationTable" class="table table-hover">
+                <table id="displayTable" class="table table-hover">
                     <tr>
                         <th width="30%">Location Name</th>
                         <th width="20%">City</th>
