@@ -43,23 +43,22 @@
                                     <option value="${currentPower.powerId}">${currentPower.powerDescription}</option>
                                 </c:forEach>
                             </select>
-
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="add-organizations" class="col-md-4 control-label">Organization:</label>
-                        <div class="col-md-8">
-                            <div class="form-check">
-                                <select class="selectpicker" multiple data-live-search="true" name="organizationList">
-                                    <c:forEach items="${organizationList}" var="currentOrganization">
-                                        <option value="${currentOrganization.organizationId}">
-                                            ${currentOrganization.organizationName}
-                                        </option>
-                                    </c:forEach>
-                                </select>
-                            </div>
+                    <div class="col-md-8">
+                        <div class="form-check">
+                            <select class="selectpicker" multiple data-live-search="true" name="organizationList">
+                                <c:forEach items="${organizationList}" var="currentOrganization">
+                                    <option value="${currentOrganization.organizationId}">
+                                        ${currentOrganization.organizationName}
+                                    </option>
+                                </c:forEach>
+                            </select>
                         </div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">

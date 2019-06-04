@@ -17,7 +17,7 @@ public class Sighting {
     
     private int sightingId;
     private LocalDate date;
-    private int locationId;
+    private Location location;
     private List<Hero> heroes;
 
     public int getSightingId() {
@@ -36,12 +36,12 @@ public class Sighting {
         this.date = date;
     }
 
-    public int getLocationId() {
-        return locationId;
+    public Location getLocation() {
+        return location;
     }
 
-    public void setLocationId(int locationId) {
-        this.locationId = locationId;
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     public List<Hero> getHeroes() {
@@ -54,11 +54,11 @@ public class Sighting {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + this.sightingId;
-        hash = 97 * hash + Objects.hashCode(this.date);
-        hash = 97 * hash + this.locationId;
-        hash = 97 * hash + Objects.hashCode(this.heroes);
+        int hash = 3;
+        hash = 47 * hash + this.sightingId;
+        hash = 47 * hash + Objects.hashCode(this.date);
+        hash = 47 * hash + Objects.hashCode(this.location);
+        hash = 47 * hash + Objects.hashCode(this.heroes);
         return hash;
     }
 
@@ -77,10 +77,10 @@ public class Sighting {
         if (this.sightingId != other.sightingId) {
             return false;
         }
-        if (this.locationId != other.locationId) {
+        if (!Objects.equals(this.date, other.date)) {
             return false;
         }
-        if (!Objects.equals(this.date, other.date)) {
+        if (!Objects.equals(this.location, other.location)) {
             return false;
         }
         if (!Objects.equals(this.heroes, other.heroes)) {
@@ -89,6 +89,7 @@ public class Sighting {
         return true;
     }
 
+   
    
     
 }

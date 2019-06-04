@@ -16,12 +16,12 @@
             <hr>
             <div class="navbar">
                 <ul class="nav nav-tabs">
-                    <li role="presentation" class="active"><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
+                    <li role="presentation"><a href="${pageContext.request.contextPath}/index">Home</a></li>
                     <li role="presentation"><a href="${pageContext.request.contextPath}/displaySightingPage">Sightings</a></li>
                     <li role="presentation"><a href="${pageContext.request.contextPath}/displayHeroPage">Hero Information</a></li>
                     <li role="presentation"><a href="${pageContext.request.contextPath}/displayLocationPage">Location Information</a></li>
                     <li role="presentation"><a href="${pageContext.request.contextPath}/displayOrganizationPage">Organizations</a></li>
-                    <li role="presentation"><a href="${pageContext.request.contextPath}/displayPowerPage">Hero Powers</a></li>
+                    <li role="presentation" class="active"><a href="${pageContext.request.contextPath}/displayPowerPage">Hero Powers</a></li>
                     <li role="presentation"><a href="${pageContext.request.contextPath}/displayLoginPage">Login</a></li>
                 </ul>    
             </div>

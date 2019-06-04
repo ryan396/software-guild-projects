@@ -106,7 +106,7 @@ public class SightingDaoDbImpl implements SightingDao {
 
         for (Sighting currentSighting : sightingList) {
 
-            currentSighting.setLocationId(this.findLocationForSighting(currentSighting).getLocationId());
+            currentSighting.setLocation(this.findLocationForSighting(currentSighting));
             currentSighting.setHeroes(this.findHeroesForSighting(currentSighting));
         }
 
@@ -118,7 +118,7 @@ public class SightingDaoDbImpl implements SightingDao {
     public void addSighting(Sighting sighting) {
         jdbcTemplate.update(SQL_INSERT_SIGHTING,
                 sighting.getDate().toString(),
-                sighting.getLocationId());
+                sighting.getLocation().getLocationId());
 
         sighting.setSightingId(jdbcTemplate.queryForObject("select LAST_INSERT_ID()",
                 Integer.class));
@@ -141,7 +141,7 @@ public class SightingDaoDbImpl implements SightingDao {
 
         jdbcTemplate.update(SQL_UPDATE_SIGHTING,
                 sighting.getDate().toString(),
-                sighting.getLocationId(),
+                sighting.getLocation().getLocationId(),
                 sighting.getSightingId());
         jdbcTemplate.update(SQL_DELETE_SIGHTING_HERO, sighting.getSightingId());
         this.insertHeroSightings(sighting);
@@ -154,7 +154,7 @@ public class SightingDaoDbImpl implements SightingDao {
                     new SightingMapper(),
                     id);
 
-            sighting.setLocationId(findLocationForSighting(sighting).getLocationId());
+            sighting.setLocation(findLocationForSighting(sighting));
 
             sighting.setHeroes(findHeroesForSighting(sighting));
             return sighting;

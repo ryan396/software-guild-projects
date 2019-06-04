@@ -328,7 +328,7 @@ public class HeroDaoTest {
         Sighting s = new Sighting();
         s.setDate(LocalDate.parse("2019-05-01", DateTimeFormatter.ISO_DATE));
         s.setHeroes(heroList);
-        s.setLocationId(lDao.getLocationById(l.getLocationId()).getLocationId());
+        s.setLocation(lDao.getLocationById(l.getLocationId()));
         sDao.addSighting(s);
 
         List<Hero> fromDao = hDao.findAllHeroesForLocation(l.getLocationId());

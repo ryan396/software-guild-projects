@@ -186,7 +186,7 @@ public class SightingDaoTest {
         Sighting s = new Sighting();
         s.setDate(LocalDate.parse("2019-05-01", DateTimeFormatter.ISO_DATE));
         s.setHeroes(heroes);
-        s.setLocationId(lDao.getLocationById(l.getLocationId()).getLocationId());
+        s.setLocation(lDao.getLocationById(l.getLocationId()));
 
         sDao.addSighting(s);
 
@@ -222,7 +222,7 @@ public class SightingDaoTest {
         Sighting s = new Sighting();
         s.setDate(LocalDate.parse("2019-05-01", DateTimeFormatter.ISO_DATE));
         s.setHeroes(heroes);
-        s.setLocationId(lDao.getLocationById(l.getLocationId()).getLocationId());
+        s.setLocation(lDao.getLocationById(l.getLocationId()));
 
         sDao.addSighting(s);
 
@@ -262,7 +262,7 @@ public class SightingDaoTest {
         Sighting s = new Sighting();
         s.setDate(LocalDate.parse("2019-05-01", DateTimeFormatter.ISO_DATE));
         s.setHeroes(heroes);
-        s.setLocationId(lDao.getLocationById(l.getLocationId()).getLocationId());
+        s.setLocation(lDao.getLocationById(l.getLocationId()));
 
         sDao.addSighting(s);
 
@@ -292,7 +292,7 @@ public class SightingDaoTest {
         Sighting s2 = new Sighting();
         s2.setDate(LocalDate.parse("2019-05-01", DateTimeFormatter.ISO_DATE));
         s2.setHeroes(heroes2);
-        s2.setLocationId(lDao.getLocationById(l2.getLocationId()).getLocationId());
+        s2.setLocation(lDao.getLocationById(l2.getLocationId()));
 
         sDao.addSighting(s2);
 
@@ -327,7 +327,7 @@ public class SightingDaoTest {
         Sighting s = new Sighting();
         s.setDate(LocalDate.parse("2019-05-01", DateTimeFormatter.ISO_DATE));
         s.setHeroes(heroes);
-        s.setLocationId(lDao.getLocationById(l.getLocationId()).getLocationId());
+        s.setLocation(lDao.getLocationById(l.getLocationId()));
 
         sDao.addSighting(s);
         s.setDate(LocalDate.parse("2019-05-02", DateTimeFormatter.ISO_DATE));
@@ -366,7 +366,7 @@ public class SightingDaoTest {
         Sighting s = new Sighting();
         s.setDate(LocalDate.parse("2019-05-01", DateTimeFormatter.ISO_DATE));
         s.setHeroes(heroes);
-        s.setLocationId(lDao.getLocationById(l.getLocationId()).getLocationId());
+        s.setLocation(lDao.getLocationById(l.getLocationId()));
 
         sDao.addSighting(s);
 
@@ -396,7 +396,7 @@ public class SightingDaoTest {
         Sighting s2 = new Sighting();
         s2.setDate(LocalDate.parse("2019-05-01", DateTimeFormatter.ISO_DATE));
         s2.setHeroes(heroes2);
-        s2.setLocationId(lDao.getLocationById(l2.getLocationId()).getLocationId());
+        s2.setLocation(lDao.getLocationById(l2.getLocationId()));
 
         sDao.addSighting(s2);
 

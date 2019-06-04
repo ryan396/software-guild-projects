@@ -16,16 +16,15 @@
             <hr>
             <div class="navbar">
                 <ul class="nav nav-tabs">
-                    <li role="presentation" class="active"><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
+                    <li role="presentation"><a href="${pageContext.request.contextPath}/index">Home</a></li>
                     <li role="presentation"><a href="${pageContext.request.contextPath}/displaySightingPage">Sightings</a></li>
-                    <li role="presentation"><a href="${pageContext.request.contextPath}/displayHeroPage">Hero Information</a></li>
+                    <li role="presentation" class="active"><a href="${pageContext.request.contextPath}/displayHeroPage">Hero Information</a></li>
                     <li role="presentation"><a href="${pageContext.request.contextPath}/displayLocationPage">Location Information</a></li>
-                    <li role="presentation"><a href="${pageContext.request.contextPath}/displayOrganizationPage">Organizations</a></li>
                     <li role="presentation"><a href="${pageContext.request.contextPath}/displayPowerPage">Hero Powers</a></li>
                     <li role="presentation"><a href="${pageContext.request.contextPath}/displayLoginPage">Login</a></li>
                 </ul>    
             </div>
-                <hr>
+            <hr>
             <div id="topBar" class="row">
                 <div class="col-md-3">
                     <a href="${pageContext.request.contextPath}/displayAddHeroPage" type="button" id="add-Hero-button" class="btn btn-default">
@@ -50,47 +49,48 @@
                         </div>
                     </div>
                 </form>
-                        <br>
-                        <br>
-                  <hr>
-                <div class="col-md-12">
-                    <table id="displayTable" class="table table-hover">
-                        <tr>
-                            <th width="35%">Hero Name</th>
-                            <th width="35%">Description</th>
-                            <th width="10%"></th>
-                            <th width="10%"></th>
-                        </tr>
-                        <c:forEach var="currentHero" items="${heroList}">
-                            <tr>
-                                <td>
-                                    <a href ="displayHeroDetails?heroId=${currentHero.heroId}">
-                                        <c:out value="${currentHero.heroName}"/>
-                                    </a>
-                                </td>
-                                <td>
-                                    <c:out value="${currentHero.description}"/>
-                                </td>
-                                <td>
-                                    <a href="displayEditHeroPage?heroId=${currentHero.heroId}">
-                                        Edit
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="deleteHero?heroId=${currentHero.heroId}">
-                                        Delete
-                                    </a>
-                                </td>
-                            </tr>
-                        </c:forEach>
-
-                    </table>
-                </div>
-
+                <br>
+                <br>
+                <hr>
             </div>
-            <!-- Placed at the end of the document so the pages load faster -->
-            <script src="${pageContext.request.contextPath}/js/jquery-3.1.1.min.js"></script>
-            <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+            <div class="col-md-12">
+                <table id="displayTable" class="table table-hover">
+                    <tr>
+                        <th width="35%">Hero Name</th>
+                        <th width="35%">Description</th>
+                        <th width="10%"></th>
+                        <th width="10%"></th>
+                    </tr>
+                    <c:forEach var="currentHero" items="${heroList}">
+                        <tr>
+                            <td>
+                                <a href ="displayHeroDetails?heroId=${currentHero.heroId}">
+                                    <c:out value="${currentHero.heroName}"/>
+                                </a>
+                            </td>
+                            <td>
+                                <c:out value="${currentHero.description}"/>
+                            </td>
+                            <td>
+                                <a href="displayEditHeroPage?heroId=${currentHero.heroId}">
+                                    Edit
+                                </a>
+                            </td>
+                            <td>
+                                <a href="deleteHero?heroId=${currentHero.heroId}">
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+
+                </table>
+            </div>
+
+        </div>
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="${pageContext.request.contextPath}/js/jquery-3.1.1.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
     </body>
 </html>

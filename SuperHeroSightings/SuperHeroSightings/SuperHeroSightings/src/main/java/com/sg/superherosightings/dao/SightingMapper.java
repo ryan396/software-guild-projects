@@ -21,7 +21,6 @@ public final class SightingMapper implements RowMapper<Sighting> {
         Sighting s = new Sighting();
         s.setSightingId(rs.getInt("sighting_id"));
         s.setDate(rs.getTimestamp("sighting_date").toLocalDateTime().toLocalDate());
-        s.setLocationId(rs.getInt("location_id"));
         return s;
     }
 }

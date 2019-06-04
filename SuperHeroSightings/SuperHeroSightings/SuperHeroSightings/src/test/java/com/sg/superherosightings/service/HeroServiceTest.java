@@ -328,7 +328,7 @@ public class HeroServiceTest {
         Sighting s = new Sighting();
         s.setDate(LocalDate.parse("2019-05-01", DateTimeFormatter.ISO_DATE));
         s.setHeroes(heroList);
-        s.setLocationId(lService.getLocationById(l.getLocationId()).getLocationId());
+        s.setLocation(lService.getLocationById(l.getLocationId()));
         sService.addSighting(s);
 
         List<Hero> fromService = hService.findAllHeroesForLocation(l.getLocationId());
