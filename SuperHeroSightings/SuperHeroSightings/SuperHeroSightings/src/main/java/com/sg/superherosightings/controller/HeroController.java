@@ -11,6 +11,7 @@ import com.sg.superherosightings.dto.Power;
 import com.sg.superherosightings.service.HeroService;
 import com.sg.superherosightings.service.OrganizationService;
 import com.sg.superherosightings.service.PowerService;
+import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -98,23 +99,26 @@ public class HeroController {
     }
 
     @RequestMapping(value = "/addHero", method = RequestMethod.POST)
-    public String addHero(HttpServletRequest request, ArrayList<Integer> powerList, ArrayList<Integer> organizationList) {
+    public String addHero(HttpServletRequest request) {
 
         Hero hero = new Hero();
         hero.setHeroName(request.getParameter("heroName"));
         hero.setDescription(request.getParameter("description"));
+        String[] powers = request.getParameterValues("powerList");
 
-        List<Power> currentHeroPowers = new ArrayList();
-        for (int currentPowerInt : powerList) {
-            currentHeroPowers.add(pService.getPowerById(currentPowerInt));
+        List<Power> powerList = new ArrayList();
+        for (int i = 0; i < powers.length; i++) {
+            powerList.add(pService.getPowerById(parseInt(powers[i])));
         }
-        hero.setPowers(currentHeroPowers);
-
-        List<Organization> currentHeroOrganizations = new ArrayList();
-        for (int currentOrganizationInt : organizationList) {
-            currentHeroOrganizations.add(oService.getOrganizationById(currentOrganizationInt));
+        hero.setPowers(powerList);
+        
+        String[] organizations = request.getParameterValues("organizationList");
+        List<Organization> organizationList = new ArrayList();
+        for (int i = 0; i < organizations.length; i++) {
+            organizationList.add(oService.getOrganizationById(parseInt(organizations[i])));
         }
-        hero.setOrganizations(currentHeroOrganizations);
+        
+        hero.setOrganizations(organizationList);
 
         hService.addHero(hero);
 
@@ -143,20 +147,24 @@ public class HeroController {
         return "editHeroPage";
     }
 
-    @RequestMapping(value = "/editHero", method = RequestMethod.GET)
-    public String editHero(@ModelAttribute("hero") Hero hero, ArrayList<Integer> powerList, ArrayList<Integer> organizationList) {
+    @RequestMapping(value = "/editHero", method = RequestMethod.POST)
+    public String editHero(HttpServletRequest request, @ModelAttribute("hero") Hero hero) {
 
-        List<Power> currentHeroPowers = new ArrayList();
-        for (int currentPowerInt : powerList) {
-            currentHeroPowers.add(pService.getPowerById(currentPowerInt));
-        }
-        hero.setPowers(currentHeroPowers);
+        String[] powers = request.getParameterValues("powerList");
 
-        List<Organization> currentHeroOrganizations = new ArrayList();
-        for (int currentOrganizationInt : organizationList) {
-            currentHeroOrganizations.add(oService.getOrganizationById(currentOrganizationInt));
+        List<Power> powerList = new ArrayList();
+        for (int i = 0; i < powers.length; i++) {
+            powerList.add(pService.getPowerById(parseInt(powers[i])));
         }
-        hero.setOrganizations(currentHeroOrganizations);
+        hero.setPowers(powerList);
+        
+        String[] organizations = request.getParameterValues("organizationList");
+        List<Organization> organizationList = new ArrayList();
+        for (int i = 0; i < organizations.length; i++) {
+            organizationList.add(oService.getOrganizationById(parseInt(organizations[i])));
+        }
+        
+        hero.setOrganizations(organizationList);
 
         hService.updateHero(hero);
         return "redirect:displayHeroPage";

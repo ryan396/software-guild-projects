@@ -38,25 +38,28 @@
                     <label for="add-powers" class="col-md-4 control-label">Powers:</label>
                     <div class="col-md-8">
                         <div class="form-check">
-                            <c:forEach items="${powerList}" var="currentPower">
-                                <form:checkbox path="powerList" value="${currentPower.powerId}"/>
-                                ${currentPower.powerDescription}
-                            </c:forEach>
+                            <select class="selectpicker" multiple data-live-search="true" name="powerList">
+                                <c:forEach items="${powerList}" var="currentPower">
+                                    <option value="${currentPower.powerId}">${currentPower.powerDescription}</option>
+                                </c:forEach>
+                            </select>
+
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="add-organizations" class="col-md-4 control-label">Organization:</label>
-                    <div class="col-md-8">
                         <div class="col-md-8">
                             <div class="form-check">
-                                <c:forEach items="${organizationList}" var="currentOrganization">
-                                    <form:checkbox path="organizationList" value="${currentOrganization.organizationId}"/>
-                                    ${currentOrganization.organizationName}
-                                </c:forEach>
+                                <select class="selectpicker" multiple data-live-search="true" name="organizationList">
+                                    <c:forEach items="${organizationList}" var="currentOrganization">
+                                        <option value="${currentOrganization.organizationId}">
+                                            ${currentOrganization.organizationName}
+                                        </option>
+                                    </c:forEach>
+                                </select>
                             </div>
                         </div>
-                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">

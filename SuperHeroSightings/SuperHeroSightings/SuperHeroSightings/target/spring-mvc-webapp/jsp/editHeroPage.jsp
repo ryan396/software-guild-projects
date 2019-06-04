@@ -20,7 +20,7 @@
             <h2>Edit Hero</h2>
             <hr>
             <sf:form class="form-horizontal" 
-                     role="form" method="POST" modelAttribute="hero"
+                     modelAttribute="hero" role="form" method="POST" 
                      action="editHero">
                 <div class="form-group">
                     <label for="add-hero-name" class="col-md-4 control-label">Name:</label>
@@ -34,41 +34,40 @@
                         <div class="col-md-8">
                         <sf:input type="text" class="form-control" path="description" placeholder="Description"/>
                         <sf:errors path="description" cssclass="error"></sf:errors>
+                        <sf:hidden path="heroId"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="add-powers" class="col-md-4 control-label">Powers:</label>
                         <div class="col-md-8">
                             <div class="form-check">
-                                <ul>
-                            <c:forEach items="${powerList}" var="currentPower">
-                                <li>
-                                <sf:checkbox path="powerList" value="${currentPower.powerId}"/>
-                                ${currentPower.powerDescription}
-                                </li>
-                            </c:forEach>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="add-organizations" class="col-md-4 control-label">Organizations:</label>
-                        <div class="col-md-8">
-                            <div class="col-md-8">
-                                <div class="form-check">
-                                <c:forEach items="${organizationList}" var="currentOrganization">
-                                    <sf:checkbox path="organizationList" value="${currentOrganization.organizationId}"/>
-                                    ${currentOrganization.organizationName}
+                                <select class="selectpicker" multiple data-live-search="true" name="powerList">
+                                <c:forEach items="${powerList}" var="currentPower">
+                                    <option value="${currentPower.powerId}">${currentPower.powerDescription}</option>
                                 </c:forEach>
-                                </div>
-                            </div>
+                            </select>
+                        </div>   
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="add-organizations" class="col-md-4 control-label">Organizations:</label>
+                    <div class="col-md-8">
+                        <div class="form-check">
+                            <select class="selectpicker" multiple data-live-search="true" name="organizationList">
+                                <c:forEach items="${organizationList}" var="currentOrganization">
+                                    <option value="${currentOrganization.organizationId}">
+                                        ${currentOrganization.organizationName}
+                                    </option>
+                                </c:forEach>
+                            </select>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <div class="col-md-offset-6 col-md-2">
-                                    <a type="button" id="cancel-add-button" class="btn btn-default" href="${pageContext.request.contextPath}/displayHeroPage">
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <div class="col-md-offset-6 col-md-2">
+                                <a type="button" id="cancel-add-button" class="btn btn-default" href="${pageContext.request.contextPath}/displayHeroPage">
                                     Cancel
                                 </a>
                             </div>

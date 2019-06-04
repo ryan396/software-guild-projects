@@ -42,7 +42,7 @@
                     <div class="col-md-3">
                         <div class="col-md-8">
                             <select id="searchCategory" name="organizationId" class="bootstrap-select btn btn-default"> 
-                                <option value="0" selected>Organization Name</option>
+                                <option value="0" selected>All</option>
                                 <c:forEach items="${organizationList}" var="currentOrganization">
                                     <option value="${currentOrganization.organizationId}">${currentOrganization.organizationName}</option>
                                 </c:forEach>
