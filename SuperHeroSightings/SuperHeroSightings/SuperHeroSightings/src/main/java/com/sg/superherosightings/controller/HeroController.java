@@ -6,6 +6,7 @@
 package com.sg.superherosightings.controller;
 
 import com.sg.superherosightings.dto.Hero;
+import com.sg.superherosightings.dto.Location;
 import com.sg.superherosightings.dto.Organization;
 import com.sg.superherosightings.dto.Power;
 import com.sg.superherosightings.service.HeroService;
@@ -63,7 +64,9 @@ public class HeroController {
 
         List<Power> powerList = hero.getPowers();
         List<Organization> organizationList = hero.getOrganizations();
-
+        List<Location> locationList = hService.findAllLocationsForHero(heroId);
+        
+        model.addAttribute("locationList", locationList);
         model.addAttribute("hero", hero);
         model.addAttribute("powerList", powerList);
         model.addAttribute("organizationList", organizationList);

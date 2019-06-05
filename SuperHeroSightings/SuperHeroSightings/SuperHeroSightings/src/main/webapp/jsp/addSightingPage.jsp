@@ -15,6 +15,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
         <title>Record Sighting</title>
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Karla&display=swap" rel="stylesheet"> 
     </head>
     <body>
         <div class="col-md-6">
@@ -26,14 +27,14 @@
                 <div class="form-group">
                     <label for="add-date" class="col-md-4 control-label">Date:</label>
                     <div class="col-md-8">
-                        <input type="date" class="form-control" name="date" placeholder=""/>
+                        <input type="date" class="form-control" name="date" placeholder="" required/>
                     </div>
                 </div>
                    <div class="form-group">
                     <label for="add-location" class="col-md-4 control-label">Location:</label>
                     <div class="col-md-8">
                         <div class="form-check">
-                            <select class="selectpicker" data-live-search="true" name="locationList">
+                            <select class="selectpicker" data-live-search="true" name="locationList" required>
                                 <c:forEach items="${locationList}" var="currentLocation">
                                     <option value="${currentLocation.locationId}">${currentLocation.locationName}</option>
                                 </c:forEach>
@@ -45,7 +46,7 @@
                     <label for="add-heroes" class="col-md-4 control-label">Heroes Seen:</label>
                     <div class="col-md-8">
                         <div class="form-check">
-                            <select class="selectpicker" multiple data-live-search="true" name="heroList">
+                            <select class="selectpicker" multiple data-live-search="true" name="heroList" required>
                                 <c:forEach items="${heroList}" var="currentHero">
                                     <option value="${currentHero.heroId}">${currentHero.heroName}</option>
                                 </c:forEach>

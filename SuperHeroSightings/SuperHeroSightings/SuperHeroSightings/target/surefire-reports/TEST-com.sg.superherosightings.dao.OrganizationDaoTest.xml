@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="5" failures="0" name="com.sg.superherosightings.dao.OrganizationDaoTest" time="0.121" errors="0" skipped="0">
+<testsuite tests="5" failures="0" name="com.sg.superherosightings.dao.OrganizationDaoTest" time="0.152" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_191\jre\bin"/>
@@ -64,9 +64,9 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="com.sg.superherosightings.dao.OrganizationDaoTest" name="addGetOrganization" time="0.016"/>
-  <testcase classname="com.sg.superherosightings.dao.OrganizationDaoTest" name="deleteOrganization" time="0.028"/>
-  <testcase classname="com.sg.superherosightings.dao.OrganizationDaoTest" name="getAllOrganizations" time="0.016"/>
-  <testcase classname="com.sg.superherosightings.dao.OrganizationDaoTest" name="updateOrganization" time="0.032"/>
-  <testcase classname="com.sg.superherosightings.dao.OrganizationDaoTest" name="findAllHeroesByOrganization" time="0.029"/>
+  <testcase classname="com.sg.superherosightings.dao.OrganizationDaoTest" name="addGetOrganization" time="0.029"/>
+  <testcase classname="com.sg.superherosightings.dao.OrganizationDaoTest" name="deleteOrganization" time="0.027"/>
+  <testcase classname="com.sg.superherosightings.dao.OrganizationDaoTest" name="getAllOrganizations" time="0.027"/>
+  <testcase classname="com.sg.superherosightings.dao.OrganizationDaoTest" name="updateOrganization" time="0.038"/>
+  <testcase classname="com.sg.superherosightings.dao.OrganizationDaoTest" name="findAllHeroesByOrganization" time="0.031"/>
 </testsuite>

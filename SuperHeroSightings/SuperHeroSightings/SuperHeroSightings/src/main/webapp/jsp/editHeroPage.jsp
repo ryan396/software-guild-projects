@@ -14,6 +14,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
         <title>Edit Hero Page</title>
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">  
+        <link href="https://fonts.googleapis.com/css?family=Karla&display=swap" rel="stylesheet"> 
     </head>
     <body>
         <div class="col-md-6">
@@ -25,14 +26,14 @@
                 <div class="form-group">
                     <label for="add-hero-name" class="col-md-4 control-label">Name:</label>
                     <div class="col-md-8">
-                        <sf:input type="text" class="form-control" path="heroName" placeholder="Name"/>
+                        <sf:input type="text" size="50" class="form-control" path="heroName" placeholder="Name" required="required"/>
                         <sf:errors path="heroName" cssclass="error"></sf:errors>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="add-description" class="col-md-4 control-label">Description:</label>
                         <div class="col-md-8">
-                        <sf:input type="text" class="form-control" path="description" placeholder="Description"/>
+                        <sf:input type="text" size="50" class="form-control" path="description" placeholder="Description" required="required"/>
                         <sf:errors path="description" cssclass="error"></sf:errors>
                         <sf:hidden path="heroId"/>
                         </div>
@@ -41,7 +42,7 @@
                         <label for="add-powers" class="col-md-4 control-label">Powers:</label>
                         <div class="col-md-8">
                             <div class="form-check">
-                                <select class="selectpicker" multiple data-live-search="true" name="powerList">
+                                <select class="selectpicker" multiple data-live-search="true" name="powerList" required="required">
                                 <c:forEach items="${powerList}" var="currentPower">
                                     <option value="${currentPower.powerId}">${currentPower.powerDescription}</option>
                                 </c:forEach>
@@ -53,7 +54,7 @@
                     <label for="add-organizations" class="col-md-4 control-label">Organizations:</label>
                     <div class="col-md-8">
                         <div class="form-check">
-                            <select class="selectpicker" multiple data-live-search="true" name="organizationList">
+                            <select class="selectpicker" multiple data-live-search="true" name="organizationList" required="required">
                                 <c:forEach items="${organizationList}" var="currentOrganization">
                                     <option value="${currentOrganization.organizationId}">
                                         ${currentOrganization.organizationName}

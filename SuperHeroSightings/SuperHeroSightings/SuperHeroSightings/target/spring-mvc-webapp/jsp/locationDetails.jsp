@@ -8,6 +8,7 @@
         <title>Location Details</title>
         <!-- Bootstrap core CSS -->
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">        
+        <link href="https://fonts.googleapis.com/css?family=Karla&display=swap" rel="stylesheet"> 
     </head>
     <body>
         <div class="container">

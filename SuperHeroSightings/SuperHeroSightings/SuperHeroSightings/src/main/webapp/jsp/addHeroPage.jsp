@@ -14,6 +14,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
         <title>Add Hero</title>
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">  
+        <link href="https://fonts.googleapis.com/css?family=Karla&display=swap" rel="stylesheet"> 
     </head>
     <body>
         <div class="col-md-6">
@@ -25,20 +26,20 @@
                 <div class="form-group">
                     <label for="add-hero-name" class="col-md-4 control-label">Name:</label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" name="heroName" placeholder="Name"/>
+                        <input type="text" size="50" class="form-control" name="heroName" placeholder="Name" required/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="add-description" class="col-md-4 control-label">Description:</label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" name="description" placeholder="Description"/>
+                        <input type="text" size="250" class="form-control" name="description" placeholder="Description" required/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="add-powers" class="col-md-4 control-label">Powers:</label>
                     <div class="col-md-8">
                         <div class="form-check">
-                            <select class="selectpicker" multiple data-live-search="true" name="powerList">
+                            <select class="selectpicker" multiple data-live-search="true" name="powerList" required>
                                 <c:forEach items="${powerList}" var="currentPower">
                                     <option value="${currentPower.powerId}">${currentPower.powerDescription}</option>
                                 </c:forEach>
@@ -64,7 +65,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <div class="col-md-offset-6 col-md-2">
-                                <a type="button" id="cancel-add-button" class="btn btn-default" href="${pageContext.request.contextPath}/displayLocationPage">
+                                <a type="button" id="cancel-add-button" class="btn btn-default" href="${pageContext.request.contextPath}/displayHeroPage">
                                     Cancel
                                 </a>
                             </div>

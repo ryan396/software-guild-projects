@@ -7,7 +7,8 @@
     <head>
         <title>Hero Details</title>
         <!-- Bootstrap core CSS -->
-        <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">        
+        <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">  
+        <link href="https://fonts.googleapis.com/css?family=Karla&display=swap" rel="stylesheet"> 
     </head>
     <body>
         <div class="container">
@@ -39,6 +40,19 @@
                 <ul>
                     <li>
                         <c:out value="${currentOrganization.organizationName}"/>
+                    </li>
+                </ul>
+            </c:forEach>
+            <br>
+             <br>
+            <hr>
+            <h4>
+                Locations seen:
+            </h4>
+            <c:forEach var="currentLocation" items="${locationList}">
+                <ul>
+                    <li>
+                        <c:out value="${currentLocation.locationName}"/>
                     </li>
                 </ul>
             </c:forEach>

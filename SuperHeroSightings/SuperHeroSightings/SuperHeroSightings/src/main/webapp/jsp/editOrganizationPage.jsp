@@ -16,6 +16,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
         <title>Edit Organization</title>
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">  
+        <link href="https://fonts.googleapis.com/css?family=Karla&display=swap" rel="stylesheet"> 
     </head>
     <body>
         <div class="col-md-6">
@@ -26,49 +27,49 @@
                 <div class="form-group">
                     <label for="add-organization-name" class="col-md-4 control-label">Name:</label>
                     <div class="col-md-8">
-                        <sf:input type="text" class="form-control" path="organizationName" placeholder="Name"/>
+                        <sf:input type="text" size="50" class="form-control" path="organizationName" placeholder="Name" required="required"/>
                         <sf:errors path="organizationName" cssclass="error"></sf:errors>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="add-description" class="col-md-4 control-label">Description:</label>
                         <div class="col-md-8">
-                        <sf:input type="text" class="form-control" path="description" placeholder="Description"/>
+                        <sf:input type="text" size="250" class="form-control" path="description" placeholder="Description" required="required"/>
                         <sf:errors path="description" cssclass="error"></sf:errors>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="add-street" class="col-md-4 control-label">Street:</label>
                         <div class="col-md-8">
-                        <sf:input type="text" class="form-control" path="street" placeholder="Street"/>
+                        <sf:input type="text" size="50" class="form-control" path="street" placeholder="Street" required="required"/>
                         <sf:errors path="street" cssclass="error"></sf:errors>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="add-city" class="col-md-4 control-label">City:</label>
                         <div class="col-md-8">
-                        <sf:input type="text" class="form-control" path="city" placeholder="City"/>
+                        <sf:input type="text" size="50" class="form-control" path="city" placeholder="City" required="required"/>
                         <sf:errors path="city" cssclass="error"></sf:errors>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="add-zip-code" class="col-md-4 control-label">Zip Code:</label>
                         <div class="col-md-8">
-                        <sf:input type="text" class="form-control" path="zipCode" placeholder="Zip Code"/>
+                        <sf:input type="number" size="50" class="form-control" path="zipCode" placeholder="Zip Code" required="required"/>
                         <sf:errors path="zipCode" cssclass="error"></sf:errors>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="add-phone" class="col-md-4 control-label">Phone:</label>
                         <div class="col-md-8">
-                        <sf:input type="text" class="form-control" path="phone" placeholder="123-232-123"/>
+                        <sf:input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="form-control" path="phone" placeholder="123-232-123" required="required"/>
                         <sf:errors path="phone" cssclass="error"></sf:errors>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="add-email" class="col-md-4 control-label">Email:</label>
                         <div class="col-md-8">
-                        <sf:input type="email" class="form-control" path="email" placeholder="Email"/>
+                        <sf:input type="email" size="50" class="form-control" path="email" placeholder="Email" required="required"/>
                         <sf:errors path="email" cssclass="error"></sf:errors>
                         <sf:hidden path="organizationId"/>
                     </div>

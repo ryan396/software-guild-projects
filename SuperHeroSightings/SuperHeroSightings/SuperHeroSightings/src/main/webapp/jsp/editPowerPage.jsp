@@ -16,6 +16,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
         <title>Add Power</title>
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Karla&display=swap" rel="stylesheet"> 
     </head>
     <body>
         <div class="col-md-6">

@@ -17,10 +17,6 @@ and open the template in the editor.
     Author     : rianu
 */
 
-#searchBar {
-    text-align:center;
-}
-
 .form-horizontal .control-label {
     text-align: left;
 }
@@ -38,4 +34,13 @@ tr:nth-child(even) {background: #CCC}
 
 #displayTable {
     text-align: center;
+}
+
+body {
+    font-family: 'Karla', sans-serif;
+    
+}
+
+.navbar {
+     font-weight:bold;
 }

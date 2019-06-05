@@ -15,6 +15,7 @@
         <title>Sightings</title>
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet"> 
         <link href="${pageContext.request.contextPath}/css/superhero.css" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css?family=Karla&display=swap" rel="stylesheet"> 
 
     </head>
     <body>
@@ -27,6 +28,7 @@
                     <li role="presentation" class="active"><a href="${pageContext.request.contextPath}/displaySightingPage">Sightings</a></li>
                     <li role="presentation"><a href="${pageContext.request.contextPath}/displayHeroPage">Hero Information</a></li>
                     <li role="presentation"><a href="${pageContext.request.contextPath}/displayLocationPage">Location Information</a></li>
+                    <li role="presentation"><a href="${pageContext.request.contextPath}/displayOrganizationPage">Organizations</a></li>
                     <li role="presentation"><a href="${pageContext.request.contextPath}/displayPowerPage">Hero Powers</a></li>
                     <li role="presentation"><a href="${pageContext.request.contextPath}/displayLoginPage">Login</a></li>
                 </ul>    

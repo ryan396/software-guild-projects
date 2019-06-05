@@ -16,47 +16,55 @@
     </head>
     <body>
         <div class="container">
-            <h1>Sighting Details</h1>
-            <hr/>
-            <p>
-                Sighting Date: <c:out value="${sighting.date}"/>
-            </p>
-            <p>
-                Name: <c:out value="${location.locationName}"/>
-            </p>
-            <p>
-                Street: <c:out value="${location.street}"/>
-            </p>
-            <p>
-                City: <c:out value="${location.city}"/>
-            </p>
-            <p>
-                Zip Code: <c:out value="${location.zipCode}"/>
-            </p>
-            <p>
-                Latitude: <c:out value="${location.latitude}"/>
-            </p>
-            <p>
-                Longitude: <c:out value="${location.longitude}"/>
-            </p>
-            <hr>
-            <h4>
-                Heroes Seen:
-            </h4>
-            <c:forEach var="currentHero" items="${heroList}">
-                <ul>
-                    <li>
-                        <c:out value="${currentHero.heroName}"/>
-                    </li>
-                </ul>
-            </c:forEach>
-            <br>
-            <a type="button" id="cancel-s-details-button" class="btn btn-default" href="${pageContext.request.contextPath}/displaySightingPage">
-                Back
-            </a>
+            <div class="col-md-6">
+                <h1>Sighting Details</h1>
+                <hr/>
+                <p>
+                    Sighting Date: <c:out value="${sighting.date}"/>
+                </p>
+                <p>
+                    Name: <c:out value="${location.locationName}"/>
+                </p>
+                <p>
+                    Street: <c:out value="${location.street}"/>
+                </p>
+                <p>
+                    City: <c:out value="${location.city}"/>
+                </p>
+                <p>
+                    Zip Code: <c:out value="${location.zipCode}"/>
+                </p>
+                <p>
+                    Latitude: <span id="latitude"><c:out value="${location.latitude}"/></span>
+                </p>
+                <p>
+                    Longitude: <span id="longitude"><c:out value="${location.longitude}"/></span>
+                </p>
+                <hr>
+                <h4>
+                    Heroes Seen:
+                </h4>
+                <c:forEach var="currentHero" items="${heroList}">
+                    <ul>
+                        <li>
+                            <c:out value="${currentHero.heroName}"/>
+                        </li>
+                    </ul>
+                </c:forEach>
+                <br>
+                <a type="button" id="cancel-s-details-button" class="btn btn-default" href="${pageContext.request.contextPath}/displaySightingPage">
+                    Back
+                </a>
+            </div>
+             
+            <div class="col-md-6" id="map" style="width:100%; height:400px; margin-top: 20px"></div>
         </div>
 
         <script src="${pageContext.request.contextPath}/js/jquery-3.1.1.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/superhero.js"></script>
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxlUfGtOH3OxIYisUYXVkdqOkZccNBPx0&callback=mapIt">
+        </script>
     </body>
 </html>

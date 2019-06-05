@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="4" failures="0" name="com.sg.superherosightings.dao.PowerDaoTest" time="0.128" errors="0" skipped="0">
+<testsuite tests="4" failures="0" name="com.sg.superherosightings.dao.PowerDaoTest" time="0.13" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_191\jre\bin"/>
@@ -64,8 +64,8 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="com.sg.superherosightings.dao.PowerDaoTest" name="deletePower" time="0.034"/>
-  <testcase classname="com.sg.superherosightings.dao.PowerDaoTest" name="updatePower" time="0.057"/>
-  <testcase classname="com.sg.superherosightings.dao.PowerDaoTest" name="getAllPowers" time="0.021"/>
-  <testcase classname="com.sg.superherosightings.dao.PowerDaoTest" name="addGetPower" time="0.016"/>
+  <testcase classname="com.sg.superherosightings.dao.PowerDaoTest" name="deletePower" time="0.031"/>
+  <testcase classname="com.sg.superherosightings.dao.PowerDaoTest" name="updatePower" time="0.049"/>
+  <testcase classname="com.sg.superherosightings.dao.PowerDaoTest" name="getAllPowers" time="0.023"/>
+  <testcase classname="com.sg.superherosightings.dao.PowerDaoTest" name="addGetPower" time="0.027"/>
 </testsuite>
