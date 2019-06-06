@@ -14,7 +14,9 @@ import com.sg.superherosightings.service.OrganizationService;
 import com.sg.superherosightings.service.PowerService;
 import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
@@ -65,6 +67,10 @@ public class HeroController {
         List<Power> powerList = hero.getPowers();
         List<Organization> organizationList = hero.getOrganizations();
         List<Location> locationList = hService.findAllLocationsForHero(heroId);
+        //convert to set to clear duplicates and convert back to list.
+        Set<Location> set = new HashSet<>(locationList);
+        locationList.clear();
+        locationList.addAll(set);
         
         model.addAttribute("locationList", locationList);
         model.addAttribute("hero", hero);
