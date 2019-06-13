@@ -7,6 +7,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -30,9 +31,20 @@
                     <li role="presentation"><a href="${pageContext.request.contextPath}/displayLocationPage">Location Information</a></li>
                     <li role="presentation"><a href="${pageContext.request.contextPath}/displayOrganizationPage">Organizations</a></li>
                     <li role="presentation"><a href="${pageContext.request.contextPath}/displayPowerPage">Hero Powers</a></li>
-                    <li role="presentation"><a href="${pageContext.request.contextPath}/displayLoginPage">Login</a></li>
+                        <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <li role="presentation">
+                            <a href="${pageContext.request.contextPath}/displayUserList">
+                                User Admin
+                            </a>
+                        </li>                        
+                    </sec:authorize>
                 </ul>    
             </div>
+            <c:if test="${pageContext.request.userPrincipal.name != null}">
+                <p>Hello : ${pageContext.request.userPrincipal.name}
+                    | <a href="<c:url value="/j_spring_security_logout" />" > Logout</a>
+                </p>
+            </c:if>
             <hr>
             <div id="topBar" class="row">
                 <div class="col-md-3">
@@ -50,7 +62,7 @@
                     <div class="col-md-2">
                         <input type="date" class="form-control" name="date" id="date-input" placeholder="" required/>
                     </div>
-                     <div class="col-md-3">
+                    <div class="col-md-3">
                         <a href="${pageContext.request.contextPath}/displaySightingPage" id="reset-button" class="btn btn-default">
                             Reset Search
                         </a>
@@ -63,8 +75,10 @@
                     <tr>
                         <th width="30%">Sighting Date</th>
                         <th width="30%">Location Name</th>
-                        <th width="10%"></th>
-                        <th width="10%"></th>
+                            <sec:authorize access="hasRole('ROLE_ADMIN')">
+                            <th width="10%"></th>
+                            <th width="10%"></th>
+                            </sec:authorize>
                     </tr>
                     <c:forEach var="currentSighting" items="${sightingList}">
                         <tr>
@@ -76,16 +90,21 @@
                             <td>
                                 <c:out value="${currentSighting.location.locationName}"/>
                             </td>
-                            <td>
-                                <a href="displayEditSightingPage?sightingId=${currentSighting.sightingId}">
-                                    Edit
-                                </a>
-                            </td>
-                            <td>
-                                <a href="deleteSighting?sightingId=${currentSighting.sightingId}">
-                                    Delete
-                                </a>
-                            </td>
+                            <sec:authorize access="hasRole('ROLE_ADMIN')">
+                                <td>
+                                    <a href="displayEditSightingPage?sightingId=${currentSighting.sightingId}">
+                                        Edit
+                                    </a>
+                                </td>
+                            </sec:authorize>
+                            <sec:authorize access="hasRole('ROLE_ADMIN')">
+                                <td>
+                                    <a href="deleteSighting?sightingId=${currentSighting.sightingId}">
+                                        Delete
+                                    </a>
+                                </td>
+                            </sec:authorize>
+
                         </tr>
                     </c:forEach>
                 </table>

@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -23,7 +24,13 @@
                     <li role="presentation"><a href="${pageContext.request.contextPath}/displayLocationPage">Location Information</a></li>
                     <li role="presentation"><a href="${pageContext.request.contextPath}/displayOrganizationPage">Organizations</a></li>
                     <li role="presentation"><a href="${pageContext.request.contextPath}/displayPowerPage">Hero Powers</a></li>
-                    <li role="presentation"><a href="${pageContext.request.contextPath}/displayLoginPage">Login</a></li>
+                     <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <li role="presentation">
+                            <a href="${pageContext.request.contextPath}/displayUserList">
+                                User Admin
+                            </a>
+                        </li>                        
+                    </sec:authorize>
                 </ul>    
             </div>
             <hr>
