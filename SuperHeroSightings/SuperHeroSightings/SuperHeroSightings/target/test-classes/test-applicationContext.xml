@@ -23,9 +23,9 @@
           class="org.apache.commons.dbcp2.BasicDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url"
-                  value="jdbc:mysql://localhost:3306/hero_list_test"/>
-        <property name="username" value="root"/>
-        <property name="password" value="root"/>
+                              value="jdbc:mysql://op2hpcwcbxb1t4z9.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/jmo2ikabx9xop4xn"/>
+        <property name="username" value="ksbhxcoyl6qhaedn"/>
+        <property name="password" value="z0mjgb4ogsupofqb"/>
         <property name="initialSize" value="5"/>
         <property name="maxTotal" value="10"/>
     </bean>
@@ -53,16 +53,16 @@
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
     <bean id="sightingDao"
-           class="com.sg.superherosightings.dao.SightingDaoDbImpl">
+          class="com.sg.superherosightings.dao.SightingDaoDbImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
         <constructor-arg ref="heroDao"/>
     </bean>
     <bean id="organizationDao"
-           class="com.sg.superherosightings.dao.OrganizationDaoDbImpl">
+          class="com.sg.superherosightings.dao.OrganizationDaoDbImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
     <bean id="heroService"
-           class="com.sg.superherosightings.service.HeroServiceImpl">
+          class="com.sg.superherosightings.service.HeroServiceImpl">
         <constructor-arg ref="heroDao"/>
     </bean>
     <bean id="locationService"
@@ -78,15 +78,15 @@
         <constructor-arg ref="powerDao"/>
     </bean>
     <bean id="sightingService"
-           class="com.sg.superherosightings.service.SightingServiceImpl">
+          class="com.sg.superherosightings.service.SightingServiceImpl">
         <constructor-arg ref="sightingDao"/>
     </bean>
     <bean id="userDao"
           class="com.sg.superherosightings.dao.UserDaoDbImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>
-     <bean id="theUserService"
-          class="com.sg.superherosightings.service.TheUserServiceImpl">
+    <bean id="theUserService"
+           class="com.sg.superherosightings.service.TheUserServiceImpl">
         <constructor-arg ref="userDao"/>
     </bean>
 </beans>

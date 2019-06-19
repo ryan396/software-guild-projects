@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Company Contacts</title>
+        <title>SuperHero Sightings</title>
         <!-- Bootstrap core CSS -->
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
         <!-- SWC Icon -->
@@ -13,7 +13,7 @@
     </head>
     <body>
         <div class="container">
-            <h1>Company Contacts</h1>
+            <h1>SuperHero Sightings</h1>
             <hr/>
             <div class="navbar">
                 <ul class="nav nav-tabs">
